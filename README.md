@@ -1,4 +1,4 @@
-# scribe [![License](http://img.shields.io/badge/license-BSD%202--Clause-orange.svg?style=flat)](http://opensource.org/licenses/BSD-2-Clause)
+# scribe [![Build Status](https://travis-ci.org/shinra-dev/scribe.png)](https://travis-ci.org/shinra-dev/scribe) [![License](http://img.shields.io/badge/license-BSD%202--Clause-orange.svg?style=flat)](http://opensource.org/licenses/BSD-2-Clause)
 
 
 ```r
