@@ -1,0 +1,12 @@
+Package: scribe
+Version: 0.1
+Title: scribe
+Description: Profiling tools.
+Authors@R: person("Drew", "Schmidt", role = c("aut", "cre"),
+    email = "schmidt@math.utk.edu")
+Depends: R (>= 2.14.0),
+    pbdPAPI (>= 0.2-2),
+    ggplot2 (>= 1.0.0)
+ByteCompile: yes
+License: BSD 2-clause License + file LICENSE
+Maintainer: Drew Schmidt <wrathematics@gmail.com>
