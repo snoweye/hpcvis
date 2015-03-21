@@ -1,10 +1,13 @@
 Package: scribe
 Version: 0.1
-Title: scribe
-Description: Profiling tools.
+Title: Benchmarking and Plot Utilities for Hardware Counters
+Description: Scribe is a collection of tools to make benchmarking and
+    visualizing performance counter data simple, effective, and 
+    reproducible.
 Authors@R: person("Drew", "Schmidt", role = c("aut", "cre"),
     email = "schmidt@math.utk.edu")
-Depends: R (>= 2.14.0),
+Depends: R (>= 2.14.0)
+Imports:
     pbdPAPI (>= 0.2-2),
     ggplot2 (>= 1.0.0)
 ByteCompile: yes

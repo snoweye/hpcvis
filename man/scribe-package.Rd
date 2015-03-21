@@ -3,11 +3,12 @@
 \docType{package}
 \name{scribe-package}
 \alias{scribe-package}
-\title{Performance Analysis Tools for R}
+\title{Benchmarking and Plot Utilities for Hardware Counters}
 \description{
 \tabular{ll}{
-   Package: \tab pbdPAPI\cr
-   Type: \tab Package\cr License: \tab BSD 2-Clause\cr
+   Package: \tab scribe\cr
+   Type: \tab Package\cr
+   License: \tab BSD 2-Clause\cr
 }
 }
 \author{

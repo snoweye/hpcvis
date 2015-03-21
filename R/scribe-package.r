@@ -1,11 +1,12 @@
-#' Performance Analysis Tools for R
+#' Benchmarking and Plot Utilities for Hardware Counters
 #' 
 #' \tabular{ll}{ 
-#'    Package: \tab pbdPAPI\cr 
-#'    Type: \tab Package\cr License: \tab BSD 2-Clause\cr 
+#'    Package: \tab scribe\cr 
+#'    Type: \tab Package\cr 
+#'    License: \tab BSD 2-Clause\cr 
 #' }
 #' 
-#' @import pbdPAPI ggplot2
+#' @import ggplot2 pbdPAPI 
 #' 
 #' @name scribe-package
 #' @docType package
