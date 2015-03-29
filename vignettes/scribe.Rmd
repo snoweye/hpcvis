@@ -1,0 +1,66 @@
+<!--
+%\VignetteEngine{knitr}
+%\VignetteIndexEntry{Introducing Rfiglet}
+-->
+
+```{r, echo = FALSE, message = FALSE}
+library(scribe)
+library(ggplot2)
+file <- tools::file_path_as_absolute(system.file("testdata/cache_misses.Rda", package="scribe"))
+load(file)
+
+options(scipen = 3)
+knitr::opts_chunk$set(
+  comment = NA,
+  error   = FALSE,
+  tidy    = FALSE)
+```
+
+
+*Drew Schmidt* 
+<br><br>
+
+# scribe
+
+Scribe offers utilities for benchmarking and visualizing 
+
+
+```{r, echo=TRUE, eval=TRUE}
+cm_1e4
+cm_5e4
+cm_1e5
+```
+
+
+```{r, echo=TRUE, eval=TRUE}
+plot(cm_1e4)
+```
+
+
+```{r, echo=TRUE, eval=TRUE}
+plot(cm_1e4, cm_5e4, cm_1e5)
+```
+
+
+
+```{r, echo=TRUE, eval=TRUE}
+plot(cm_1e4, cm_5e4, cm_1e5, color=TRUE, show.opnames=FALSE)
+```
+
+
+
+```{r, echo=TRUE, eval=TRUE}
+plot(cm_1e4, cm_5e4, cm_1e5, facet.by="level") + 
+    theme(axis.text.x=element_text(angle=30, hjust=1))
+```
+
+
+```{r, echo=TRUE, eval=TRUE}
+plot(cm_1e4, cm_5e4, cm_1e5, color=TRUE, show.opnames=FALSE, facet.by="level")
+```
+
+
+<br><br><br>
+![Creative Commons License](cc.png "Creative Commons License")
+
+This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/)
