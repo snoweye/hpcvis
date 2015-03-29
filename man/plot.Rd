@@ -29,4 +29,22 @@ shown.}
 \description{
 Plots PAPI objects
 }
+\examples{
+\dontrun{
+library(pbdPAPI)
+x <- system.cache(rnorm(2e2))
+y <- system.cache(rnorm(1e4))
+z <- system.cache(rnorm(1e6))
+
+library(scribe)
+plot(x)
+plot(x, show.opnames=FALSE)
+
+plot(x, y, opnames=c("2e2", "1e4"), title="rnorm()")
+
+plot(x, y, z, opnames=c("rnorm(2e2)", "rnorm(1e4)", "rnorm(1e6)"))
+
+plot(x, y, z, opnames=c("2e2", "1e4"))
+}
+}
 

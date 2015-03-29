@@ -45,6 +45,24 @@ cache_lookup_type_levels <- function(x)
 #' Choice to facet cache plots by the different expressions/operations
 #' (\code{facet.by="opnames"}), or by the cache level (\code{facet.by="level"}).
 #' 
+#' @examples
+#' \dontrun{
+#' library(pbdPAPI)
+#' x <- system.cache(rnorm(2e2))
+#' y <- system.cache(rnorm(1e4))
+#' z <- system.cache(rnorm(1e6))
+#' 
+#' library(scribe)
+#' plot(x)
+#' plot(x, show.opnames=FALSE)
+#' 
+#' plot(x, y, opnames=c("2e2", "1e4"), title="rnorm()")
+#' 
+#' plot(x, y, z, opnames=c("rnorm(2e2)", "rnorm(1e4)", "rnorm(1e6)"))
+#' 
+#' plot(x, y, z, opnames=c("2e2", "1e4"))
+#' }
+#' 
 #' @rdname plot
 #' @export
 plot.papi_cache <- function(x, ..., title, opnames, color=FALSE, show.opnames=TRUE, facet.by="opnames")
@@ -113,7 +131,8 @@ plot.papi_cache <- function(x, ..., title, opnames, color=FALSE, show.opnames=TR
   if (len > 1)
   {
     if (color)
-      g <- ggplot(data=df, aes_string(x=xvar, y=yvar, fill="opnames"))
+      g <- ggplot(data=df, aes_string(x=xvar, y=yvar, fill="opnames")) + 
+           scale_fill_discrete(name="Operation")
     else
       g <- ggplot(data=df, aes_string(x=xvar, y=yvar))
   }
@@ -130,34 +149,16 @@ plot.papi_cache <- function(x, ..., title, opnames, color=FALSE, show.opnames=TR
   g <- g + facet_wrap(as.formula(paste("~", facetvar)))
   
   if (!show.opnames)
-    g <- g + theme(strip.background=element_blank(),
-      strip.text.x=element_blank())
+  {
+    if (facet.by == "opnames")
+      g <- g + theme(strip.background=element_blank(), strip.text.x=element_blank())
+    else if (facet.by == "level")
+      g <- g + theme(axis.ticks=element_blank(), axis.text.x=element_blank())
+  }
   
   if (!missing(title))
     g <- g + ggtitle(title)
   
   return(g)
 }
-
-
-#plot(x, y)
-#plot(x, y, facet.by="level")
-
-
-### Examples
-#library(pbdPAPI)
-#x <- system.cache(rnorm(2e2))
-#y <- system.cache(rnorm(1e4))
-#z <- system.cache(rnorm(1e6))
-
-#plot(x)
-#plot(x, show.opnames=FALSE)
-
-#plot(x, y, opnames=c("2e2", "1e4"), title="rnorm()")
-
-#plot(x, y, z, opnames=c("rnorm(2e2)", "rnorm(1e4)", "rnorm(1e6)"))
-
-#plot(x, y, z, opnames=c("2e2", "1e4"))
-
-
 
