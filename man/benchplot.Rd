@@ -38,8 +38,5 @@ benchplot(x, y, "both")
 }
 
 }
-\seealso{
-\code{ \link{prof-class} }
-}
 \keyword{utility}
 

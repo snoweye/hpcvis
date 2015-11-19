@@ -63,8 +63,9 @@ cache_lookup_type_levels <- function(x)
 #' plot(x, y, z, opnames=c("2e2", "1e4"))
 #' }
 #' 
-#' @name papi-plot
-#' @rdname papi-plot
+#' @name papi_cache-plot
+#' @rdname papi_cache-plot
+#' @method plot papi_cache
 #' @export
 plot.papi_cache <- function(x, ..., title, opnames, color=FALSE, show.opnames=TRUE, facet.by="opnames")
 {
@@ -162,4 +163,3 @@ plot.papi_cache <- function(x, ..., title, opnames, color=FALSE, show.opnames=TR
   
   return(g)
 }
-

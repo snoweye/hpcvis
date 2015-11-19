@@ -37,8 +37,5 @@ of barplots should be included should .}
 \description{
 Plot methods for \code{prof} class objects.
 }
-\seealso{
-\code{ \link{prof-class}, \link{read.prof} }
-}
 \keyword{Methods}
 

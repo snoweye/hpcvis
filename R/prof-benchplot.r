@@ -13,7 +13,6 @@
 #' @param plot.type character; determines what kind of plot to produce.
 #' options are "runtime", "speedup", or "both".
 #' @param title character or NULL; plot title.
-#' @seealso \code{ \link{prof-class} }
 #' @keywords utility
 #' @examples
 #' 
@@ -117,4 +116,3 @@ benchplot <- function(cores, timings, plot.type="speedup", title=NULL)
   
   return( g )
 }
-

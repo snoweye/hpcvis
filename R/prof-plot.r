@@ -24,7 +24,6 @@
 #' logical; indicates whether or not numeric values of heights
 #' of barplots should be included should .
 #' 
-#' @seealso \code{ \link{prof-class}, \link{read.prof} }
 #' @docType methods
 #' @keywords Methods
 #' @name prof-plot
