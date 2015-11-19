@@ -6,7 +6,12 @@
 #'    License: \tab BSD 2-Clause\cr
 #' }
 #'
-#' @import ggplot2 graphics grid gridExtra reshape2 ggplot2
+#' @import methods 
+#' @import graphics 
+#' @import grid
+#' @import gridExtra 
+#' @import reshape2 
+#' @import ggplot2
 #' @importFrom stats aggregate as.formula
 #'
 #' @name scribe-package
