@@ -1,4 +1,14 @@
-# scribe [![Build Status](https://travis-ci.org/shinra-dev/scribe.png)](https://travis-ci.org/shinra-dev/scribe) [![License](http://img.shields.io/badge/license-BSD%202--Clause-orange.svg?style=flat)](http://opensource.org/licenses/BSD-2-Clause)
+# scribe
+
+* **Version:** 0.1-0
+
+* **Author:** See section below.
+
+
+
+
+
+## Usage
 
 
 ```r
@@ -9,13 +19,23 @@ plot(x,y)
 ```
 
 
-## Software license and disclaimer
 
-This software is licensed under the permissive 2-clause BSD license. You can 
-find a quick summary of the license here:
+## Installation
 
-https://tldrlegal.com/license/bsd-2-clause-license-%28freebsd%29
+```r
+library(devtools)
+install_github("RBigData/scribe")
+```
 
-The full terms of the license (it's very short) are contained in the LICENSE 
-file in the root directory of the project.
+See the vignette for installation troubleshooting.
 
+
+
+## Authors
+
+scribe is authored and maintained by members of the pbdR core team:
+* Drew Schmidt
+* Wei-Chen Chen
+
+With additional contributions from:
+* Gaurav Sehrawat

@@ -1,15 +1,28 @@
 Package: scribe
-Version: 0.1
+Version: 0.1-0
 Title: Benchmarking and Plot Utilities for Hardware Counters
 Description: Scribe is a collection of tools to make benchmarking and
-    visualizing performance counter data simple, effective, and 
+    visualizing performance counter data simple, effective, and
     reproducible.
-Authors@R: person("Drew", "Schmidt", role = c("aut", "cre"),
-    email = "schmidt@math.utk.edu")
-Depends: R (>= 2.14.0)
+Authors@R: c(person("Drew", "Schmidt", role = c("aut", "cre"),
+      email = "wrathematics@gmail.com"),
+    person("Wei-Chen", "Chen", role = "aut"),
+    person("Gaurav", "Sehrawat", role="ctb"))
+Depends:
+    R (>= 3.0.0)
 Imports:
-    pbdPAPI (>= 0.2-2),
-    ggplot2 (>= 1.0.0)
+    graphics,
+    grid,
+    gridExtra (>= 0.9.1),
+    reshape2 (>= 1.4.1),
+    ggplot2 (>= 1.0.1)
+Enhances: pbdPAPI (>= 0.2-2),
+    pbdPROF (>= 0.4-0)
 ByteCompile: yes
 License: BSD 2-clause License + file LICENSE
+URL: http://r-pbd.org/
+BugReports: http://group.r-pbd.org/
+MailingList: Please send questions and comments regarding pbdR to
+    RBigData@gmail.com
 Maintainer: Drew Schmidt <wrathematics@gmail.com>
+RoxygenNote: 5.0.1
