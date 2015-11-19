@@ -1,6 +1,6 @@
 <!--
 %\VignetteEngine{knitr}
-%\VignetteIndexEntry{Introducing Rfiglet}
+%\VignetteIndexEntry{Introducing scribe}
 -->
 
 ```{r, echo = FALSE, message = FALSE}
@@ -22,7 +22,7 @@ knitr::opts_chunk$set(
 
 # scribe
 
-Scribe offers utilities for benchmarking and visualizing 
+Scribe offers utilities for benchmarking and visualizing profiler data from MPI profilers, as well as performance counter data from PAPI.
 
 
 ```{r, echo=TRUE, eval=TRUE}
