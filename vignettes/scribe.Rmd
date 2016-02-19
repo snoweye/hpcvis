@@ -1,34 +1,78 @@
-<!--
-%\VignetteEngine{knitr}
-%\VignetteIndexEntry{Introducing scribe}
--->
+---
+title: "Introducing scribe"
+author: "Drew Schmidt"
+date: "`r Sys.Date()`"
+output:
+  html_document:
+    fig_caption: true
+    toc: true
+    number_sections: true
+    css: include/custom.css
+    highlight: kate
+bibliography: include/scribe.bib
+csl: "include/ieee.csl"
+vignette: >
+  %\VignetteIndexEntry{Introducing scribe}
+  %\VignetteEngine{knitr::rmarkdown}
+---
+
+
 
 ```{r, echo = FALSE, message = FALSE}
 library(scribe)
 library(ggplot2)
-file <- tools::file_path_as_absolute(system.file("testdata/cache_misses.Rda", package="scribe"))
-load(file)
 
 options(scipen = 3)
 knitr::opts_chunk$set(
   comment = NA,
   error   = FALSE,
-  tidy    = FALSE)
+  tidy    = FALSE
+)
 ```
 
 
-*Drew Schmidt* 
-<br><br>
-
-# scribe
+# Introduction
 
 Scribe offers utilities for benchmarking and visualizing profiler data from MPI profilers, as well as performance counter data from PAPI.
 
 
+[[@pbdR2012]]
+[[@profpackage]]
+[[@profvignette]]
+[[@papipackage]]
+[[@papivignette]]
+[[@mucci1999papi]]
+[[@fpmpi]]
+[[@mpiP]]
+
+
+## Installation
+
+At this time, we can not release the package on CRAN due to the absence of the **pbdPAPI** package from CRAN.  
+
+The development version is maintained on GitHub, and can easily be installed by any of the packages that offer installations from GitHub:
+
+```r
+devtools::install_github("RBigData/scribe")
+ghit::install_github("RBigData/scribe")
+remotes::install_github("RBigData/scribe")
+```
+
+
+
+
+
+# Hardware Profiler Data
+
+```{r}
+file <- system.file("testdata/cache_misses.Rda", package="scribe")
+load(file)
+```
+
+This loads three objects named `cm_1e4`, `cm_5e4`, and `cm_1e5`.
+
 ```{r, echo=TRUE, eval=TRUE}
 cm_1e4
-cm_5e4
-cm_1e5
 ```
 
 
@@ -60,7 +104,25 @@ plot(cm_1e4, cm_5e4, cm_1e5, color=TRUE, show.opnames=FALSE, facet.by="level")
 ```
 
 
-<br><br><br>
-![Creative Commons License](cc.png "Creative Commons License")
+# MPI Profiler Data
 
-This work is licensed under a [Creative Commons Attribution 4.0 International License](http://creativecommons.org/licenses/by/4.0/)
+
+
+
+
+# Legal
+
+&copy; 2016 Drew Schmidt.
+
+Permission is granted to make and distribute verbatim copies of this vignette and its source provided the copyright notice and this permission notice are preserved on all copies.
+
+Any opinions, findings, and conclusions or recommendations expressed in  this material are those of the authors and do not necessarily reflect the  views of the National Science Foundation.  The findings and conclusions in this article have not been formally disseminated by the U.S. Department of Health \& Human Services nor by the U.S. Department of Energy, and should not be construed to represent any determination or policy of University, Agency, Administration and National Laboratory.
+
+This manual may be incorrect or out-of-date.  The authors assume no responsibility for errors or omissions, or for damages resulting from the use of the information contained herein.
+
+
+
+
+
+# References
+<script language="JavaScript" src="include/headers.js"></script>

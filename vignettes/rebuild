@@ -1,11 +1,7 @@
-#!/bin/bash
+#!/bin/sh
 
-function rebuild {
-  Rscript -e "rmarkdown::render('$1.Rmd')"
-  cp $1.Rmd ../inst/doc/
-  mv $1.html ../inst/doc/
-}
-
-### Introducing Rfiglet
-rebuild scribe
+rm -f *.html *.pdf
+Rscript -e "rmarkdown::render('scribe.Rmd')"
+#mv -f *.html ../inst/doc/
+#cp -f *.Rmd ../inst/doc/
 
