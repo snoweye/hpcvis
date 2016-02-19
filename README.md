@@ -1,9 +1,7 @@
 # scribe
 
-# remoter
-
 * **Version:** 0.1-0
-* **URL**: https://github.com/wrathematics/remoter
+* **URL**: https://github.com/RBigData/scribe
 * **License:** [![License](http://img.shields.io/badge/license-BSD%202--Clause-orange.svg?style=flat)](http://opensource.org/licenses/BSD-2-Clause)
 * **Author:** See section below.
 
