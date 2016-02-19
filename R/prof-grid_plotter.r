@@ -69,5 +69,3 @@ grid_plotter <- function(plots, which, label, show.title=TRUE, legend)
   
   return( plots )
 }
-
-

@@ -11,7 +11,7 @@
 #' @importFrom grid grid.layout frameGrob placeGrob
 #' @importFrom stats aggregate as.formula
 #' @importFrom reshape2 melt
-#' @importFrom gridExtra arrangeGrob
+#' @importFrom gridExtra arrangeGrob grid.arrange
 #' @importFrom ggplot2 aes aes_string element_blank element_text facet_wrap geom_abline
 #'  geom_bar geom_line geom_point geom_text ggplot ggplotGrob
 #'  ggplot_build ggplot_gtable ggtitle labs qplot scale_fill_discrete
