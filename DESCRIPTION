@@ -6,10 +6,7 @@ Description: A collection of tools to aid in benchmarking and
     data.  The methods are intended to offer powerful, reproducible
     visualizations with simple syntax.  Profiler data from
     the pbdPROF and pbdPAPI packages is supported.
-Authors@R: c(person("Drew", "Schmidt", role = c("aut", "cre"),
-      email = "wrathematics@gmail.com"),
-    person("Wei-Chen", "Chen", role = "aut"),
-    person("Gaurav", "Sehrawat", role="ctb"))
+License: BSD 2-clause License + file LICENSE
 Depends:
     R (>= 3.0.0)
 Imports:
@@ -22,11 +19,19 @@ Imports:
 Enhances: 
     pbdPAPI (>= 0.2-2),
     pbdPROF (>= 0.4-0)
+Suggests:
+    knitr,
+    rmarkdown
+VignetteBuilder: knitr
+NeedsCompilation: no
 ByteCompile: yes
-License: BSD 2-clause License + file LICENSE
-URL: http://r-pbd.org/
-BugReports: http://group.r-pbd.org/
 MailingList: Please send questions and comments regarding pbdR to
     RBigData@gmail.com
+Authors@R: c(person("Drew", "Schmidt", role = c("aut", "cre"),
+      email = "wrathematics@gmail.com"),
+    person("Wei-Chen", "Chen", role = "aut"),
+    person("Gaurav", "Sehrawat", role="ctb"))
+URL: http://r-pbd.org/
+BugReports: http://group.r-pbd.org/
 Maintainer: Drew Schmidt <wrathematics@gmail.com>
 RoxygenNote: 5.0.1
