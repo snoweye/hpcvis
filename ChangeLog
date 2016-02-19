@@ -1,2 +1,3 @@
-Release 0.1:
-	* 
+Release 0.1-0:
+	* Import plots formerly from pbdPAPI and pbdPROF.
+	* Add vignette.
