@@ -1,7 +1,7 @@
-library(scribe)
+library(hpcvis)
 library(ggplot2)
 
-file <- system.file("testdata/cache_misses.Rda", package="scribe")
+file <- system.file("testdata/cache_misses.Rda", package="hpcvis")
 load(file)
 
 test <- plot(cm_1e4)

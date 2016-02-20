@@ -1,7 +1,6 @@
 #!/bin/sh
 
 rm -f *.html *.pdf
-Rscript -e "rmarkdown::render('scribe.Rmd')"
+Rscript -e "rmarkdown::render('hpcvis.Rmd')"
 #mv -f *.html ../inst/doc/
 #cp -f *.Rmd ../inst/doc/
-

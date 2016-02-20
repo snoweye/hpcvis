@@ -1,4 +1,4 @@
-Package: scribe
+Package: hpcvis
 Version: 0.1-0
 Title: Benchmarking and Plot Utilities for Hardware Counters
 Description: A collection of tools to aid in benchmarking and

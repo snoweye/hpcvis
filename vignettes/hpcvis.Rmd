@@ -1,5 +1,5 @@
 ---
-title: "Introducing scribe"
+title: "Introducing hpcvis"
 author: "Drew Schmidt"
 date: "`r Sys.Date()`"
 output:
@@ -9,17 +9,17 @@ output:
     number_sections: true
     css: include/custom.css
     highlight: kate
-bibliography: include/scribe.bib
+bibliography: include/hpcvis.bib
 csl: "include/ieee.csl"
 vignette: >
-  %\VignetteIndexEntry{Introducing scribe}
+  %\VignetteIndexEntry{Introducing hpcvis}
   %\VignetteEngine{knitr::rmarkdown}
 ---
 
 
 
 ```{r, echo = FALSE, message = FALSE}
-library(scribe)
+library(hpcvis)
 library(ggplot2)
 
 options(scipen = 3)
@@ -33,7 +33,7 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-Scribe offers utilities for benchmarking and visualizing profiler data from MPI profilers, as well as performance counter data from PAPI.
+hpcvis offers utilities for benchmarking and visualizing profiler data from MPI profilers, as well as performance counter data from PAPI.
 
 
 [[@pbdR2012]]
@@ -53,9 +53,9 @@ At this time, we can not release the package on CRAN due to the absence of the *
 The development version is maintained on GitHub, and can easily be installed by any of the packages that offer installations from GitHub:
 
 ```r
-devtools::install_github("RBigData/scribe")
-ghit::install_github("RBigData/scribe")
-remotes::install_github("RBigData/scribe")
+devtools::install_github("RBigData/hpcvis")
+ghit::install_github("RBigData/hpcvis")
+remotes::install_github("RBigData/hpcvis")
 ```
 
 
@@ -65,7 +65,7 @@ remotes::install_github("RBigData/scribe")
 # Hardware Profiler Data
 
 ```{r}
-file <- system.file("testdata/cache_misses.Rda", package="scribe")
+file <- system.file("testdata/cache_misses.Rda", package="hpcvis")
 load(file)
 ```
 
@@ -105,6 +105,20 @@ plot(cm_1e4, cm_5e4, cm_1e5, color=TRUE, show.opnames=FALSE, facet.by="level")
 
 
 # MPI Profiler Data
+
+## fpmpi
+
+```{r, echo=TRUE, eval=TRUE}
+file <- system.file("extdata/svd.fpmpi", package="pbdPROF")
+svd_fpmpi <- pbdPROF::read.prof(file)
+```
+
+## mpiP
+
+```{r, echo=TRUE, eval=TRUE}
+file <- system.file("extdata/svd.mpiP", package="pbdPROF")
+svd_mpiP <- pbdPROF::read.prof(file)
+```
 
 
 

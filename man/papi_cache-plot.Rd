@@ -37,7 +37,7 @@ x <- system.cache(rnorm(2e2))
 y <- system.cache(rnorm(1e4))
 z <- system.cache(rnorm(1e6))
 
-library(scribe)
+library(hpcvis)
 plot(x)
 plot(x, show.opnames=FALSE)
 

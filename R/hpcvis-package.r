@@ -1,7 +1,7 @@
 #' Benchmarking and Plot Utilities for Hardware Counters
 #'
 #' \tabular{ll}{
-#'    Package: \tab scribe\cr
+#'    Package: \tab hpcvis\cr
 #'    Type: \tab Package\cr
 #'    License: \tab BSD 2-Clause\cr
 #' }
@@ -17,7 +17,7 @@
 #'  ggplot_build ggplot_gtable ggtitle labs qplot scale_fill_discrete
 #'  theme theme_bw unit xlab ylab autoplot
 #'
-#' @name scribe-package
+#' @name hpcvis-package
 #' @docType package
 #' @author Drew Schmidt \email{wrathematics AT gmail.com}
 NULL
