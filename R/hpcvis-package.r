@@ -7,7 +7,7 @@
 #' }
 #'
 #' @import methods 
-#' 
+#' @import assertthat
 #' @importFrom grid grid.layout frameGrob placeGrob textGrob gpar grid.newpage
 #' @importFrom stats aggregate as.formula
 #' @importFrom reshape2 melt
