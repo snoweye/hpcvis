@@ -284,7 +284,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
     # Min message size by rank
     g1 <- ggplot(data = messagemin, aes(Rank, Min, fill = factor(Call_Name))) + 
             geom_bar(stat="identity") + 
-            ylab("Min Message Size (in bytes)") +
+            ylab("Min Message Size (bytes)") +
             theme_bw() + 
             theme(legend.position = "none") +
             facet_wrap(facets =~ Call_Name, scales = "free_x")
@@ -292,7 +292,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
     # Mean message size by rank
     g2 <- ggplot(data = messagemean, aes(Rank, Mean, fill = factor(Call_Name))) + 
             geom_bar(stat="identity") + 
-            ylab("Mean Message Size (in bytes)") +
+            ylab("Mean Message Size (bytes)") +
             theme_bw() + 
             theme(legend.position = "none") +
             facet_wrap(facets =~ Call_Name, scales = "free_x")
@@ -300,7 +300,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
     # Max message size by rank
     g3 <- ggplot(data = messagemax, aes(Rank, Max, fill = factor(Call_Name))) + 
             geom_bar(stat="identity") + 
-            ylab("Max Message Size (in bytes)") +
+            ylab("Max Message Size (bytes)") +
             theme_bw() + 
             theme(legend.position = "none") +
             facet_wrap(facets =~ Call_Name, scales = "free_x")
@@ -308,7 +308,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
     # Total message size by rank
     g4 <- ggplot(data = messagesum, aes(Rank, Sum, fill = factor(Call_Name))) + 
             geom_bar(stat="identity") + 
-            ylab("Total Message Size (in bytes)") +
+            ylab("Total Message Size (bytes)") +
             theme_bw() + 
             theme(legend.position = "none") +
             facet_wrap(facets =~ Call_Name, scales = "free_x")
@@ -339,13 +339,13 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
     g1 <- ggplot(data = messagesum, aes(Rank, Sum, fill = factor(Call_Name))) + 
             geom_bar(stat="identity") + 
             theme_bw() + 
-            ylab("Total Message Size (in bytes)") + 
+            ylab("Total Message Size (bytes)") + 
             scale_fill_discrete(name="MPI Function")
     
     # Min message size by rank
     g2 <- ggplot(data = messagemin, aes(Rank, Min, fill = factor(Call_Name))) +
             geom_bar(stat="identity") + 
-            ylab("Min Message Size (in bytes)") +
+            ylab("Min Message Size (bytes)") +
             scale_fill_discrete(name="MPI Function") + 
             theme_bw() + 
             theme(legend.position = "none")
@@ -353,7 +353,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
     # Mean message size by rank
     g3 <- ggplot(data = messagemean, aes(Rank, Mean, fill = factor(Call_Name))) +
             geom_bar(stat="identity") + 
-            ylab("Mean Message Size (in bytes)") + 
+            ylab("Mean Message Size (bytes)") + 
             scale_fill_discrete(name="MPI Function") + 
             theme_bw() + 
             theme(legend.position = "none")
@@ -361,7 +361,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
     # Max message size by rank
     g4 <- ggplot(data = messagemax, aes(Rank, Max, fill = factor(Call_Name))) +
             geom_bar(stat="identity") + 
-            ylab("Max Message Size (in bytes)") + 
+            ylab("Max Message Size (bytes)") + 
             scale_fill_discrete(name="MPI Function") + 
             theme_bw() + 
             theme(legend.position = "none")
@@ -450,7 +450,7 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
   g3 <- ggplot(data=sentvscallname, aes(Call3, Message_size, fill=Legends3)) +
           geom_bar(stat="identity") + 
           xlab("MPI Function") + 
-          ylab("Message Size (in bytes)") +
+          ylab("Message Size (bytes)") +
           theme_bw() + 
           theme(legend.position="none") +
           geom_text(data=sentvscallname, aes(label=Message_size, y=Message_size), size=3, vjust=0) + 

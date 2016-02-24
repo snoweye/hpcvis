@@ -12,7 +12,7 @@ plot_fpmpi <- function(x, which=1L:4L, show.title=TRUE, label)
   g1 <- ggplot(df, aes_string(x = 'Routine', y = 'Calls')) + 
           geom_bar(stat = "identity", aes_string(fill = 'Routine')) + 
           xlab("Routine") + 
-          ylab("Calls") +
+          ylab("Number of Function Calls") +
           theme(axis.text.x = element_text(angle = 20, hjust = 1)) +
           theme(legend.position = "none")
   
