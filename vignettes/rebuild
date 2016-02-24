@@ -2,5 +2,8 @@
 
 rm -f *.html *.pdf
 Rscript -e "rmarkdown::render('hpcvis.Rmd')"
+Rscript -e "rmarkdown::render('mpiplots.Rmd')"
+Rscript -e "rmarkdown::render('counterplots.Rmd')"
+
 #mv -f *.html ../inst/doc/
 #cp -f *.Rmd ../inst/doc/

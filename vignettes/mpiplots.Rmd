@@ -1,5 +1,5 @@
 ---
-title: "Introducing hpcvis"
+title: "Visualizing MPI Codes with hpcvis"
 author: "Drew Schmidt"
 date: "`r Sys.Date()`"
 output:
@@ -12,7 +12,7 @@ output:
 bibliography: include/hpcvis.bib
 csl: "include/ieee.csl"
 vignette: >
-  %\VignetteIndexEntry{Introducing hpcvis}
+  %\VignetteIndexEntry{Visualizing MPI Codes with hpcvis}
   %\VignetteEngine{knitr::rmarkdown}
 ---
 
@@ -32,30 +32,41 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-hpcvis offers utilities for benchmarking and visualizing profiler data from MPI profilers, as well as performance counter data from PAPI.
-
-
 [[@pbdR2012]]
 [[@profpackage]]
 [[@profvignette]]
-[[@papipackage]]
-[[@papivignette]]
-[[@mucci1999papi]]
 [[@fpmpi]]
 [[@mpiP]]
 
 
-## Installation
 
-At this time, we can not release the package on CRAN due to the absence of the **pbdPAPI** package from CRAN.  
 
-The development version is maintained on GitHub, and can easily be installed by any of the packages that offer installations from GitHub:
+# Plotting fpmpi Data
 
-```r
-devtools::install_github("RBigData/hpcvis")
-ghit::install_github("RBigData/hpcvis")
-remotes::install_github("RBigData/hpcvis")
+```{r, echo=TRUE, eval=TRUE}
+library(hpcvis)
+file <- system.file("extdata/quantile.mw.fpmpi", package="pbdPROF")
+quantile.fpmpi <- pbdPROF::read.prof(file)
+
+profplot(quantile.fpmpi)
+profplot(quantile.fpmpi, which=1:2)
 ```
+
+
+
+# Plotting mpiP Data
+
+```{r, echo=TRUE, eval=TRUE}
+library(hpcvis)
+file <- system.file("extdata/quantile.mw.mpip", package="pbdPROF")
+quantile.mpip <- pbdPROF::read.prof(file)
+
+profplot(quantile.mpip)
+profplot(quantile.mpip, plot.type="messages")
+profplot(quantile.mpip, plot.type="messages", stacked=TRUE)
+profplot(quantile.mpip, bar.label=TRUE)
+```
+
 
 
 

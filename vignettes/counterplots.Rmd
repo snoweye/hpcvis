@@ -1,5 +1,5 @@
 ---
-title: "Introducing hpcvis"
+title: "Visualizing Performance Counter Data with hpcvis"
 author: "Drew Schmidt"
 date: "`r Sys.Date()`"
 output:
@@ -12,7 +12,7 @@ output:
 bibliography: include/hpcvis.bib
 csl: "include/ieee.csl"
 vignette: >
-  %\VignetteIndexEntry{Introducing hpcvis}
+  %\VignetteIndexEntry{Visualizing Performance Counter Data with hpcvis}
   %\VignetteEngine{knitr::rmarkdown}
 ---
 
@@ -36,26 +36,56 @@ hpcvis offers utilities for benchmarking and visualizing profiler data from MPI 
 
 
 [[@pbdR2012]]
-[[@profpackage]]
-[[@profvignette]]
 [[@papipackage]]
 [[@papivignette]]
 [[@mucci1999papi]]
-[[@fpmpi]]
-[[@mpiP]]
 
 
-## Installation
 
-At this time, we can not release the package on CRAN due to the absence of the **pbdPAPI** package from CRAN.  
 
-The development version is maintained on GitHub, and can easily be installed by any of the packages that offer installations from GitHub:
+# Hardware Profiler Data
 
-```r
-devtools::install_github("RBigData/hpcvis")
-ghit::install_github("RBigData/hpcvis")
-remotes::install_github("RBigData/hpcvis")
+```{r}
+library(hpcvis)
+file <- system.file("testdata/cache_misses.Rda", package="hpcvis")
+load(file)
 ```
+
+This loads three objects named `cm_1e4`, `cm_5e4`, and `cm_1e5`.
+
+```{r, echo=TRUE, eval=TRUE}
+cm_1e4
+```
+
+
+```{r, echo=TRUE, eval=TRUE}
+plot(cm_1e4)
+```
+
+
+```{r, echo=TRUE, eval=TRUE}
+plot(cm_1e4, cm_5e4, cm_1e5)
+```
+
+
+
+```{r, echo=TRUE, eval=TRUE}
+plot(cm_1e4, cm_5e4, cm_1e5, color=TRUE, opnames=NULL)
+```
+
+
+
+```{r, echo=TRUE, eval=TRUE}
+library(ggplot2)
+plot(cm_1e4, cm_5e4, cm_1e5, facet.by="level") + 
+    theme(axis.text.x=element_text(angle=30, hjust=1))
+```
+
+
+```{r, echo=TRUE, eval=TRUE}
+plot(cm_1e4, cm_5e4, cm_1e5, color=TRUE, facet.by="level")
+```
+
 
 
 
