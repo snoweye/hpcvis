@@ -419,13 +419,13 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
   messagecount <- messagecount[(messagecount$Rank != "*"),]
   
   # (function call) count by rank
-  g1 <- ggplot2(data=timingcount, aes(Rank, Count, fill=factor(Call_Name))) + 
+  g1 <- ggplot(data=timingcount, aes(Rank, Count, fill=factor(Call_Name))) + 
           geom_bar(stat="identity") + 
           theme_bw() + 
           ylab("Number of Function Calls") +
           scale_fill_discrete(name="MPI Function") 
   
-  g2 <- ggplot2(data = messagecount, aes(Rank, Count, fill = factor(Call_Name))) + 
+  g2 <- ggplot(data = messagecount, aes(Rank, Count, fill = factor(Call_Name))) + 
           geom_bar(stat="identity") + 
           ylab("Message Count") +
           geom_text(data = messagecount, aes(label = Count, y = Count), size = 3) +
@@ -438,7 +438,7 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
   sentvscallname <- data.frame(Call3=sentstat$Call, Message_size=sentstat$Total)
   Legends3 <- factor(sentvscallname$Call3)
   
-  g3 <- ggplot2(data=sentvscallname, aes(Call3, Message_size, fill=Legends3)) +
+  g3 <- ggplot(data=sentvscallname, aes(Call3, Message_size, fill=Legends3)) +
           geom_bar(stat="identity") + 
           xlab("MPI Function") + 
           ylab("Message Size (in bytes)") +
@@ -451,7 +451,7 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
   sentvscallname_per <- data.frame(Call3=sentstat$Call, Message_size_per=sentstat$Sent.)
   Legends4 <- factor(sentvscallname_per$Call3)
   
-  g4 <- ggplot2(data=sentvscallname_per, aes(Call3, Message_size_per, fill=Legends4)) +
+  g4 <- ggplot(data=sentvscallname_per, aes(Call3, Message_size_per, fill=Legends4)) +
           geom_bar(stat="identity") + 
           xlab("MPI Function") + 
           ylab("Proportion of Message Size") +

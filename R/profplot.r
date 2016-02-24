@@ -22,6 +22,9 @@
 #' @export
 profplot <- function(x, which=1L:4L, plot.type="timing", title, bar.label=FALSE)
 {
+  if (class(x) != "prof")
+    stop("argument 'x' must be of class 'prof'")
+  
   if (missing(title))
     show.title <- TRUE
   else if (is.null(label))
@@ -35,8 +38,8 @@ profplot <- function(x, which=1L:4L, plot.type="timing", title, bar.label=FALSE)
     ret <- plot_mpip(x, which=which, show.title=show.title,
               plot.type=plot.type, label=title, bar.label=bar.label)
   else if (x@profiler == 'tau')
-    ret <- plot_tau(x, ..., which=which, show.title=show.title,
-             plot.type=plot.type, label=label, bar.label=bar.label)
+    ret <- plot_tau(x, which=which, show.title=show.title,
+             plot.type=plot.type, label=title, bar.label=bar.label)
   else
     stop("Unknown profiler")
   
