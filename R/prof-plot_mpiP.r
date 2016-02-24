@@ -32,7 +32,7 @@ plot_mpip_timing <- function(output, bar.label, plot.type)
           theme_bw() + 
           theme(legend.direction="horizontal", 
             plot.margin=unit(c(1, 0, 0, 0), "cm"), 
-            legend.position=c(0.5, 1.05))
+            legend.position=c(0.5, 1.08))
   
   # Percentage time by rank
   tot <- rankvsmpi$AppTime
@@ -50,7 +50,7 @@ plot_mpip_timing <- function(output, bar.label, plot.type)
           theme_bw() + 
           theme(legend.direction="horizontal", 
             plot.margin=unit(c(1, 0, 0, 0), "cm"), 
-            legend.position=c(0.5, 1.05))
+            legend.position=c(0.5, 1.08))
   
   # Run time by function
   timestat <- output[[3]]
@@ -315,6 +315,15 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
     
     if (bar.label)
     {
+      messagemin <- aggregate(messagemin$Min, by=list(messagemin$Rank, messagemin$Call_Name), FUN=function(x) sum(as.numeric(x)))
+      colnames(messagemin) <- c("Rank", "Call_Name", "Min")
+      messagemean <- aggregate(messagemean$Mean, by=list(messagemean$Rank, messagemean$Call_Name), FUN=function(x) sum(as.numeric(x)))
+      colnames(messagemean) <- c("Rank", "Call_Name", "Mean")
+      messagemax <- aggregate(messagemax$Max, by=list(messagemax$Rank, messagemax$Call_Name), FUN=function(x) sum(as.numeric(x)))
+      colnames(messagemax) <- c("Rank", "Call_Name", "Max")
+      messagesum <- aggregate(messagesum$Sum, by=list(messagesum$Rank, messagesum$Call_Name), FUN=function(x) sum(as.numeric(x)))
+      colnames(messagesum) <- c("Rank", "Call_Name", "Sum")
+      
       g1 <- g1 + geom_text(data = messagemin, aes(label = Min, y = Min), size = 3, vjust=0)
       g2 <- g2 + geom_text(data = messagemean, aes(label = Mean, y = Mean), size = 3, vjust=0)
       g3 <- g3 + geom_text(data = messagemax, aes(label = Max, y = Max), size = 3, vjust=0)
