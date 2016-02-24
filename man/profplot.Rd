@@ -20,13 +20,19 @@ Determines which plots will be produced.}
 
 \item{plot.type}{for profiling mpiP including "timings", "stats", and "messages".}
 
-\item{stacked}{Should bars be stacked or separated?  Only supported for the
-\code{plot.type} values of "stats" or "messages".}
+\item{stacked}{logical; should bars be stacked or separated?}
 
 \item{bar.label}{logical; indicates whether or not numeric values of heights
 of barplots should be included should .}
 }
 \description{
 Plot methods for \code{prof} class objects.
+}
+\examples{
+\dontrun{
+x <- pbdPROF::read.prof("mydata")
+hpcvis::profplot(x)
+}
+
 }
 

@@ -106,7 +106,7 @@ plot_mpip_timing <- function(output, bar.label, stacked)
 
 
 ### Timing statistics
-plot_mpip_stats <- function(output, bar.label, plot.type)
+plot_mpip_stats <- function(output, bar.label, stacked)
 {
   ### Fool R CMD check
   Rank <- MPI_time <- Tot <- Call1 <- Time <- Call2 <-
@@ -145,7 +145,7 @@ plot_mpip_stats <- function(output, bar.label, plot.type)
   timingmax <- aggregate(timingmax[, "Max_time"], timingmax[c("Rank", "Call_Name")], FUN=max)
   names(timingmax) <- c("Rank", "Call_Name", "Max_time")
   
-  if (plot.type == "stats1")
+  if (!stacked)
   {
     # Function call count by rank
     g1 <- ggplot(data=timingcount, aes(Rank, Count, fill=factor(Call_Name))) + 
@@ -189,8 +189,7 @@ plot_mpip_stats <- function(output, bar.label, plot.type)
     
     return( list(g1=g1, g2=g2, g3=g3, g4=g4) )
   }
-  
-  else if (plot.type == "stats2")
+  else
   {
     # Sum of MPI function count by rank
     g1 <- ggplot(data=timingcount, aes(Rank, Count, fill=factor(Call_Name))) + 
@@ -263,7 +262,7 @@ plot_mpip_stats <- function(output, bar.label, plot.type)
 
 
 ### Message statistics
-plot_mpip_messages <- function(output, bar.label, plot.type)
+plot_mpip_messages <- function(output, bar.label, stacked)
 {
   ### Fool R CMD check
   Rank <- MPI_time <- Tot <- Call1 <- Time <- Call2 <-
@@ -289,7 +288,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
   messagesum <- messagesum[(messagesum$Rank !=  "*"),]
   
   
-  if (plot.type == "messages1")
+  if (!stacked)
   {
     # Min message size by rank
     g1 <- ggplot(data = messagemin, aes(Rank, Min, fill = factor(Call_Name))) + 
@@ -342,8 +341,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
     
     return( list(g1=g1, g2=g2, g3=g3, g4=g4) )
   }
-  
-  else if (plot.type == "messages2")
+  else
   {
     # Total message size by rank
     g1 <- ggplot(data = messagesum, aes(Rank, Sum, fill = factor(Call_Name))) + 
@@ -416,7 +414,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
 
 
 ### Counts FIXME
-plot_mpip_counts <- function(output, bar.label, plot.type)
+plot_mpip_counts <- function(output, bar.label, stacked)
 {
   ### Fool R CMD check
   Rank <- MPI_time <- Tot <- Call1 <- Time <- Call2 <- Call3 <-
@@ -498,9 +496,6 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
 ### mpip
 plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timings", label, bar.label=FALSE, stacked=FALSE)
 {
-  plot.types <- c("timings", "stats1", "stats2", "messages1", "messages2")#, "counts")
-  plot.type <- match.arg(tolower(plot.type), plot.types)
-  
   add.legend <- FALSE
   
   output <- x@parsed
@@ -521,14 +516,14 @@ plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timings", labe
   # Timing statistics
   # --------------------------------------------------------
   
-  else if (plot.type == "stats1" || plot.type == "stats2")
+  else if (plot.type == "stats")
   {
-    plots <- plot_mpip_stats(output=output, bar.label=bar.label, plot.type=plot.type)
+    plots <- plot_mpip_stats(output=output, bar.label=bar.label, stacked=stacked)
     
-    if (plot.type == "stats1" && missing(label))
+    if (missing(label) && !stacked)
       label <- "Timing Statistics by Function"
     
-    if (plot.type == "stats2")
+    if (stacked)
     {
       add.legend <- TRUE
       legend <- plots$legend
@@ -543,14 +538,14 @@ plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timings", labe
   # Message statistics
   # --------------------------------------------------------
   
-  else if (plot.type == "messages1" || plot.type == "messages2")
+  else if (plot.type == "messages")
   {
-    plots <- plot_mpip_messages(output=output, bar.label=bar.label, plot.type=plot.type)
+    plots <- plot_mpip_messages(output=output, bar.label=bar.label, stacked=stacked)
     
-    if (plot.type == "messages1" && missing(label))
+    if (missing(label) && !stacked)
       label <- "Message Statistics by Rank"
     
-    if (plot.type == "messages2")
+    if (stacked)
     {
       add.legend <- TRUE
       legend <- plots$legend
