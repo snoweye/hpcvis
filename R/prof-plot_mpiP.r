@@ -29,6 +29,7 @@ plot_mpip_timing <- function(output, bar.label, plot.type)
   g1 <- ggplot(data=rankvsmpi1, aes(Rank, MPI_time, fill=Timing)) +
           geom_bar(stat="identity") +
           ylab("Application Run Time (seconds)") + 
+          theme_bw() + 
           theme(legend.direction="horizontal", 
             plot.margin=unit(c(1, 0, 0, 0), "cm"), 
             legend.position=c(0.5, 1.05))
@@ -46,6 +47,7 @@ plot_mpip_timing <- function(output, bar.label, plot.type)
   g2 <- ggplot(data=rankvsmpi2, aes(Rank, MPI_time, fill=Timing)) +
           geom_bar(stat="identity") +
           ylab("% Application Run Time") + 
+          theme_bw() + 
           theme(legend.direction="horizontal", 
             plot.margin=unit(c(1, 0, 0, 0), "cm"), 
             legend.position=c(0.5, 1.05))
@@ -61,6 +63,7 @@ plot_mpip_timing <- function(output, bar.label, plot.type)
           geom_bar(stat="identity") +
           xlab("MPI Function") + 
           ylab("MPI Function Run Time (seconds)") +
+          theme_bw() + 
           theme(legend.position="none") +
           theme(axis.text.x=element_text(angle=-30, vjust=0.5))
   
@@ -74,6 +77,7 @@ plot_mpip_timing <- function(output, bar.label, plot.type)
           geom_bar(stat="identity") +
           xlab("MPI Function") + 
           ylab("% MPI Function Run Time") +
+          theme_bw() + 
           theme(legend.position="none") +
           theme(axis.text.x=element_text(angle=-30, vjust=0.5))
   
@@ -137,6 +141,7 @@ plot_mpip_stats <- function(output, bar.label, plot.type)
     g1 <- ggplot(data=timingcount, aes(Rank, Count, fill=factor(Call_Name))) + 
             geom_bar(stat="identity") + 
             ylab("Number of Function Calls") +
+            theme_bw() + 
             theme(legend.position = "none") +
             facet_wrap(facets =~ Call_Name, scales = "free_x")
     
@@ -144,6 +149,7 @@ plot_mpip_stats <- function(output, bar.label, plot.type)
     g2 <- ggplot(data=timingmin, aes(Rank, Min_time, fill=factor(Call_Name))) + 
             geom_bar(stat="identity") + 
             ylab("Min Time (seconds)") +
+            theme_bw() + 
             theme(legend.position = "none") +
             facet_wrap(facets =~ Call_Name, scales = "free_x")
      
@@ -151,6 +157,7 @@ plot_mpip_stats <- function(output, bar.label, plot.type)
     g3 <- ggplot(data=timingmean, aes(Rank, Mean_time, fill=factor(Call_Name))) + 
             geom_bar(stat="identity") + 
             ylab("Mean Time (seconds)") +
+            theme_bw() + 
             theme(legend.position = "none") +
             facet_wrap(facets =~ Call_Name, scales = "free_x")
     
@@ -158,6 +165,7 @@ plot_mpip_stats <- function(output, bar.label, plot.type)
     g4 <- ggplot(data=timingmax, aes(Rank, Max_time, fill=factor(Call_Name))) + 
             geom_bar(stat="identity") + 
             ylab("Max Time (seconds)") +
+            theme_bw() + 
             theme(legend.position = "none") +
             facet_wrap(facets =~ Call_Name, scales = "free_x")
     
@@ -177,12 +185,14 @@ plot_mpip_stats <- function(output, bar.label, plot.type)
     # Sum of MPI function count by rank
     g1 <- ggplot(data=timingcount, aes(Rank, Count, fill=factor(Call_Name))) + 
             geom_bar(stat="identity") + 
+            theme_bw() + 
             ylab("Number of Function Calls")
     
     # Sum of Min run time by rank
     g2 <- ggplot(data=timingmin, aes(Rank, Min_time, fill=factor(Call_Name))) +
             geom_bar(stat="identity") + 
             ylab("Sum of Min Run Times (seconds)") +
+            theme_bw() + 
             theme(legend.position = "none") + 
             scale_fill_discrete(name="MPI Function")
     
@@ -190,6 +200,7 @@ plot_mpip_stats <- function(output, bar.label, plot.type)
     g3 <- ggplot(data=timingmean, aes(Rank, Mean_time, fill=factor(Call_Name))) + 
                 geom_bar(stat="identity") + 
                 ylab("Sum of Mean Run Time (seconds)") +
+                theme_bw() + 
                 theme(legend.position = "none") + 
                 scale_fill_discrete(name="MPI Function")
     
@@ -197,6 +208,7 @@ plot_mpip_stats <- function(output, bar.label, plot.type)
     g4 <- ggplot(data=timingmax, aes(Rank, Max_time, fill=factor(Call_Name))) +
                 geom_bar(stat="identity") + 
                 ylab("Sum of Max Run Time (seconds)") +
+                theme_bw() + 
                 theme(legend.position = "none") + 
                 scale_fill_discrete(name="MPI Function")
     
@@ -273,6 +285,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
     g1 <- ggplot(data = messagemin, aes(Rank, Min, fill = factor(Call_Name))) + 
             geom_bar(stat="identity") + 
             ylab("Min Message Size (in bytes)") +
+            theme_bw() + 
             theme(legend.position = "none") +
             facet_wrap(facets =~ Call_Name, scales = "free_x")
     
@@ -280,6 +293,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
     g2 <- ggplot(data = messagemean, aes(Rank, Mean, fill = factor(Call_Name))) + 
             geom_bar(stat="identity") + 
             ylab("Mean Message Size (in bytes)") +
+            theme_bw() + 
             theme(legend.position = "none") +
             facet_wrap(facets =~ Call_Name, scales = "free_x")
     
@@ -287,6 +301,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
     g3 <- ggplot(data = messagemax, aes(Rank, Max, fill = factor(Call_Name))) + 
             geom_bar(stat="identity") + 
             ylab("Max Message Size (in bytes)") +
+            theme_bw() + 
             theme(legend.position = "none") +
             facet_wrap(facets =~ Call_Name, scales = "free_x")
     
@@ -294,6 +309,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
     g4 <- ggplot(data = messagesum, aes(Rank, Sum, fill = factor(Call_Name))) + 
             geom_bar(stat="identity") + 
             ylab("Total Message Size (in bytes)") +
+            theme_bw() + 
             theme(legend.position = "none") +
             facet_wrap(facets =~ Call_Name, scales = "free_x")
     
@@ -313,6 +329,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
     # Total message size by rank
     g1 <- ggplot(data = messagesum, aes(Rank, Sum, fill = factor(Call_Name))) + 
             geom_bar(stat="identity") + 
+            theme_bw() + 
             ylab("Total Message Size (in bytes)") + 
             scale_fill_discrete(name="MPI Function")
     
@@ -321,6 +338,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
             geom_bar(stat="identity") + 
             ylab("Min Message Size (in bytes)") +
             scale_fill_discrete(name="MPI Function") + 
+            theme_bw() + 
             theme(legend.position = "none")
     
     # Mean message size by rank
@@ -328,6 +346,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
             geom_bar(stat="identity") + 
             ylab("Mean Message Size (in bytes)") + 
             scale_fill_discrete(name="MPI Function") + 
+            theme_bw() + 
             theme(legend.position = "none")
     
     # Max message size by rank
@@ -335,6 +354,7 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
             geom_bar(stat="identity") + 
             ylab("Max Message Size (in bytes)") + 
             scale_fill_discrete(name="MPI Function") + 
+            theme_bw() + 
             theme(legend.position = "none")
     
     if (bar.label)
@@ -401,6 +421,7 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
   # (function call) count by rank
   g1 <- ggplot2(data=timingcount, aes(Rank, Count, fill=factor(Call_Name))) + 
           geom_bar(stat="identity") + 
+          theme_bw() + 
           ylab("Number of Function Calls") +
           scale_fill_discrete(name="MPI Function") 
   
@@ -408,6 +429,7 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
           geom_bar(stat="identity") + 
           ylab("Message Count") +
           geom_text(data = messagecount, aes(label = Count, y = Count), size = 3) +
+          theme_bw() + 
           theme(legend.position = "none") +
           facet_wrap(facets =~ Call_Name, scales = "free_x")
   
@@ -420,6 +442,7 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
           geom_bar(stat="identity") + 
           xlab("MPI Function") + 
           ylab("Message Size (in bytes)") +
+          theme_bw() + 
           theme(legend.position="none") +
           geom_text(data=sentvscallname, aes(label=Message_size, y=Message_size), size=3) + 
           theme(axis.text.x=element_text(angle=-30, vjust=0.5))
@@ -432,6 +455,7 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
           geom_bar(stat="identity") + 
           xlab("MPI Function") + 
           ylab("Proportion of Message Size") +
+          theme_bw() + 
           theme(legend.position="none") +
           geom_text(data=sentvscallname_per, aes(label=Message_size_per, y=Message_size_per), size=3) + 
           theme(axis.text.x=element_text(angle=-30, vjust=0.5))

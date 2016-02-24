@@ -8,7 +8,7 @@
 #'
 #' @import methods 
 #' 
-#' @importFrom grid grid.layout frameGrob placeGrob
+#' @importFrom grid grid.layout frameGrob placeGrob textGrob gpar grid.newpage
 #' @importFrom stats aggregate as.formula
 #' @importFrom reshape2 melt
 #' @importFrom gridExtra arrangeGrob grid.arrange
