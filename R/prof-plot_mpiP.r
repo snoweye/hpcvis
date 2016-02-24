@@ -477,7 +477,7 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
 
 
 ### mpip
-plot_mpip <- function(x, ..., which=1L:4L, show.title=TRUE, plot.type="timing", label, bar.label=FALSE)
+plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timing", label, bar.label=FALSE)
 {
   plot.types <- c("timing", "stats1", "stats2", "messages1", "messages2", "counts")
   plot.type <- match.arg(tolower(plot.type), plot.types)

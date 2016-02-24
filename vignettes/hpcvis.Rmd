@@ -109,15 +109,20 @@ plot(cm_1e4, cm_5e4, cm_1e5, color=TRUE, show.opnames=FALSE, facet.by="level")
 ## fpmpi
 
 ```{r, echo=TRUE, eval=TRUE}
+library(hpcvis)
 file <- system.file("extdata/svd.fpmpi", package="pbdPROF")
 svd_fpmpi <- pbdPROF::read.prof(file)
+profplot(svd_fpmpi)
 ```
 
 ## mpiP
 
 ```{r, echo=TRUE, eval=TRUE}
-file <- system.file("extdata/svd.mpiP", package="pbdPROF")
-svd_mpiP <- pbdPROF::read.prof(file)
+library(hpcvis)
+file <- system.file("extdata/svd.mpip", package="pbdPROF")
+svd_mpip <- pbdPROF::read.prof(file)
+g = profplot(svd_mpip, plot.type="stats2")
+g
 ```
 
 

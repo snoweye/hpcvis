@@ -1,4 +1,4 @@
-plot_fpmpi <- function(x, ..., which=1L:4L, show.title=TRUE, label)
+plot_fpmpi <- function(x, which=1L:4L, show.title=TRUE, label)
 {
   df <- as.data.frame(x@parsed)
   
@@ -44,4 +44,3 @@ plot_fpmpi <- function(x, ..., which=1L:4L, show.title=TRUE, label)
   
   return( g )
 }
-
