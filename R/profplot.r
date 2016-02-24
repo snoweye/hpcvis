@@ -13,12 +13,12 @@
 #' Vector consisting of a subset of the integers 1 through 4.
 #' Determines which plots will be produced.
 #' @param plot.type
-#' for profiling mpiP including "timings", "stats", and "messages".
+#' Different default plot sets to generate (mpiP data only). 
+#' Options are "timings", "stats", and "messages".
 #' @param stacked
-#' logical; should bars be stacked or separated?
+#' Logical; should bars be stacked or separated?
 #' @param bar.label
-#' logical; indicates whether or not numeric values of heights
-#' of barplots should be included should .
+#' Logical; should numeric values of heights of bars be shown?
 #' 
 #' @examples
 #' \dontrun{

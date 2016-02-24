@@ -18,12 +18,12 @@ based on the input data.}
 \item{which}{Vector consisting of a subset of the integers 1 through 4.
 Determines which plots will be produced.}
 
-\item{plot.type}{for profiling mpiP including "timings", "stats", and "messages".}
+\item{plot.type}{Different default plot sets to generate (mpiP data only). 
+Options are "timings", "stats", and "messages".}
 
-\item{stacked}{logical; should bars be stacked or separated?}
+\item{stacked}{Logical; should bars be stacked or separated?}
 
-\item{bar.label}{logical; indicates whether or not numeric values of heights
-of barplots should be included should .}
+\item{bar.label}{Logical; should numeric values of heights of bars be shown?}
 }
 \description{
 Plot methods for \code{prof} class objects.
