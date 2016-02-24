@@ -43,6 +43,36 @@ hpcvis offers utilities for benchmarking and visualizing profiler data from MPI 
 
 
 
+
+# Importing data
+
+It is quite possible, or perhaps even likely, that the computing environment in which you wish to *analyze* performance counter data is very different from the one which will *produce* it.  Recall that the **pbdPAPI** package must run under a Linux environment, where you may not wish to deal with the headache of installing all of the dependencies of **hpcvis** (notably, **ggplot2**).
+
+```r
+x <- system.cache(rnorm(1e4))
+x
+## L1 Cache Misses: 7620
+## L2 Cache Misses: 9786
+## L3 Cache Misses: 5972 
+```
+
+```r
+dump("x", stdout())
+## x <-
+## structure(list(`L1 cache misses` = 7620, `L2 cache misses` = 9786, 
+##     `L3 cache misses` = 5972), .Names = c("L1 cache misses", 
+## "L2 cache misses", "L3 cache misses"), class = c("papi_output", 
+## "papi_cache"), call = "rnorm(10000)")
+```
+
+or even to a file
+
+```r
+dump("x", "/path/to/myfile")
+```
+
+
+
 # Hardware Profiler Data
 
 ```{r}
