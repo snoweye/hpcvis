@@ -110,7 +110,7 @@ plot_mpip_stats <- function(output, bar.label, plot.type)
   timing <- output[[5]]
   timing <- timing[(timing$Rank != "*"), ]
   rownames(timing) <- 1:nrow(timing)
-  timing$Rank <- as.numeric(as.character(timing$Rank))
+  timing$Rank <- factor(as.numeric(as.character(timing$Rank)))
   
   # Convert to seconds
   timing$Max <- signif(timing$Max/1000, digits=3)
@@ -479,7 +479,7 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
 ### mpip
 plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timing", label, bar.label=FALSE)
 {
-  plot.types <- c("timing", "stats1", "stats2", "messages1", "messages2", "counts")
+  plot.types <- c("timing", "stats1", "stats2", "messages1", "messages2")#, "counts")
   plot.type <- match.arg(tolower(plot.type), plot.types)
   
   add.legend <- FALSE
