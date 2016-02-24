@@ -84,10 +84,10 @@ plot_mpip_timing <- function(output, bar.label, plot.type)
   
   if (bar.label)
   {
-    g1 <- g1 + geom_text(data=runtime, aes(label=MPI_time, y=MPI_time), size=3)
-    g2 <- g2 + geom_text(data=pctruntime, aes(label=MPI_time, y=Tot), size=3)
-    g3 <- g3 + geom_text(data=timevscallname, aes(label=Time, y=Time), size=3)
-    g4 <- g4 + geom_text(data=timevscallname_per, aes(label=Time_per, y=Time_per), size=3)
+    g1 <- g1 + geom_text(data=runtime, aes(label=MPI_time, y=MPI_time), size=3, vjust=0)
+    g2 <- g2 + geom_text(data=pctruntime, aes(label=MPI_time, y=Tot), size=3, vjust=0)
+    g3 <- g3 + geom_text(data=timevscallname, aes(label=Time, y=Time), size=3, vjust=0)
+    g4 <- g4 + geom_text(data=timevscallname_per, aes(label=Time_per, y=Time_per), size=3, vjust=0)
   }
   
   return( list(g1=g1, g2=g2, g3=g3, g4=g4) )
@@ -171,10 +171,10 @@ plot_mpip_stats <- function(output, bar.label, plot.type)
     
     if (bar.label)
     {
-      g1 <- g1 + geom_text(data=timingcount, aes(label=Count, y=Count), size = 3)
-      g2 <- g2 + geom_text(data=timingmin, aes(label=Min_time, y=Min_time), size = 3)
-      g3 <- g3 + geom_text(data=timingmean, aes(label=Mean_time, y=Mean_time), size=3)
-      g4 <- g4 + geom_text(data=timingmax, aes(label=Max_time, y=Max_time), size=3)
+      g1 <- g1 + geom_text(data=timingcount, aes(label=Count, y=Count), size = 3, vjust=0)
+      g2 <- g2 + geom_text(data=timingmin, aes(label=Min_time, y=Min_time), size = 3, vjust=0)
+      g3 <- g3 + geom_text(data=timingmean, aes(label=Mean_time, y=Mean_time), size=3, vjust=0)
+      g4 <- g4 + geom_text(data=timingmax, aes(label=Max_time, y=Max_time), size=3, vjust=0)
     }
     
     return( list(g1=g1, g2=g2, g3=g3, g4=g4) )
@@ -219,22 +219,22 @@ plot_mpip_stats <- function(output, bar.label, plot.type)
       timingcount_label <- aggregate(timingcount[, "Count"], timingcount["Rank"], FUN=sum)
       names(timingcount_label) <- c("Rank", "Count")
       timingcount_label$Call_Name <- rep(as.character(timingcount$Call_Name[1]), commsize)
-      g1 <- g1 + geom_text(data=timingcount_label, aes(label=Count, y=Count), size=3)
+      g1 <- g1 + geom_text(data=timingcount_label, aes(label=Count, y=Count), size=3, vjust=0)
       
       timingmin_label <- aggregate(timingmin[, "Min_time"], timingmin["Rank"], FUN=sum)
       names(timingmin_label) <- c("Rank", "Min_time")
       timingmin_label$Call_Name <- rep(as.character(timingmin$Call_Name[1]), commsize)
-      g2 <- g2 + geom_text(data=timingmin_label, aes(label=Min_time, y=Min_time), size=3)
+      g2 <- g2 + geom_text(data=timingmin_label, aes(label=Min_time, y=Min_time), size=3, vjust=0)
       
       timingmean_label <- aggregate(timingmean[, "Mean_time"], timingmean["Rank"], FUN=sum)
       names(timingmean_label) <- c("Rank", "Mean_time")
       timingmean_label$Call_Name <- rep(as.character(timingmean$Call_Name[1]), commsize)
-      g3 <- g3 + geom_text(data=timingmean_label, aes(label=Mean_time, y=Mean_time), size=3)
+      g3 <- g3 + geom_text(data=timingmean_label, aes(label=Mean_time, y=Mean_time), size=3, vjust=0)
       
       timingmax_label <- aggregate(timingmax[, "Max_time"], timingmax["Rank"], FUN=sum)
       names(timingmax_label) <- c("Rank", "Max_time")
       timingmax_label$Call_Name <- rep(as.character(timingmax$Call_Name[1]), commsize)
-      g4 <- g4 + geom_text(data=timingmax_label, aes(label=Max_time, y=Max_time), size=3)
+      g4 <- g4 + geom_text(data=timingmax_label, aes(label=Max_time, y=Max_time), size=3, vjust=0)
     }
     
     
@@ -315,10 +315,10 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
     
     if (bar.label)
     {
-      g1 <- g1 + geom_text(data = messagemin, aes(label = Min, y = Min), size = 3)
-      g2 <- g2 + geom_text(data = messagemean, aes(label = Mean, y = Mean), size = 3)
-      g3 <- g3 + geom_text(data = messagemax, aes(label = Max, y = Max), size = 3)
-      g4 <- g4 + geom_text(data = messagesum, aes(label = Sum, y = Sum), size = 3)
+      g1 <- g1 + geom_text(data = messagemin, aes(label = Min, y = Min), size = 3, vjust=0)
+      g2 <- g2 + geom_text(data = messagemean, aes(label = Mean, y = Mean), size = 3, vjust=0)
+      g3 <- g3 + geom_text(data = messagemax, aes(label = Max, y = Max), size = 3, vjust=0)
+      g4 <- g4 + geom_text(data = messagesum, aes(label = Sum, y = Sum), size = 3, vjust=0)
     }
     
     return( list(g1=g1, g2=g2, g3=g3, g4=g4) )
@@ -364,22 +364,22 @@ plot_mpip_messages <- function(output, bar.label, plot.type)
       messagesum_label <- aggregate(messagesum[, "Sum"], messagesum["Rank"], FUN=sum)
       names(messagesum_label) <- c("Rank", "Sum")
       messagesum_label$Call_Name <- rep(as.character(messagesum$Call_Name[1]), commsize)
-      g1 <- g1 + geom_text(data=messagesum_label, aes(label = Sum, y = Sum), size = 3)
+      g1 <- g1 + geom_text(data=messagesum_label, aes(label = Sum, y = Sum), size = 3, vjust=0)
       
       messagemin_label <- aggregate(messagemin[, "Min"], messagemin["Rank"], FUN=sum)
       names(messagemin_label) <- c("Rank", "Min")
       messagemin_label$Call_Name <- rep(as.character(messagemin$Call_Name[1]), commsize)
-      g2 <- g2 + geom_text(data=messagemin_label, aes(label = Min, y = Min), size = 3)
+      g2 <- g2 + geom_text(data=messagemin_label, aes(label = Min, y = Min), size = 3, vjust=0)
       
       messagemean_label <- aggregate(messagemean[, "Mean"], messagemean["Rank"], FUN=sum)
       names(messagemean_label) <- c("Rank", "Mean")
       messagemean_label$Call_Name <- rep(as.character(messagemean$Call_Name[1]), commsize)
-      g3 <- g3 + geom_text(data = messagemean_label, aes(label = Mean, y = Mean), size = 3)
+      g3 <- g3 + geom_text(data = messagemean_label, aes(label = Mean, y = Mean), size = 3, vjust=0)
       
       messagemax_label <- aggregate(messagemax[, "Max"], messagemax["Rank"], FUN=sum)
       names(messagemax_label) <- c("Rank", "Max")
       messagemax_label$Call_Name <- rep(as.character(messagemax$Call_Name[1]), commsize)
-      g4 <- g4 + geom_text(data = messagemax_label, aes(label = Max, y = Max), size = 3)
+      g4 <- g4 + geom_text(data = messagemax_label, aes(label = Max, y = Max), size = 3, vjust=0)
     }
     
     # Plot a single legend
@@ -428,7 +428,7 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
   g2 <- ggplot(data = messagecount, aes(Rank, Count, fill = factor(Call_Name))) + 
           geom_bar(stat="identity") + 
           ylab("Message Count") +
-          geom_text(data = messagecount, aes(label = Count, y = Count), size = 3) +
+          geom_text(data = messagecount, aes(label = Count, y = Count), size = 3, vjust=0) +
           theme_bw() + 
           theme(legend.position = "none") +
           facet_wrap(facets =~ Call_Name, scales = "free_x")
@@ -444,7 +444,7 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
           ylab("Message Size (in bytes)") +
           theme_bw() + 
           theme(legend.position="none") +
-          geom_text(data=sentvscallname, aes(label=Message_size, y=Message_size), size=3) + 
+          geom_text(data=sentvscallname, aes(label=Message_size, y=Message_size), size=3, vjust=0) + 
           theme(axis.text.x=element_text(angle=-30, vjust=0.5))
   
   # Proportion of data sent/received by function
@@ -457,7 +457,7 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
           ylab("Proportion of Message Size") +
           theme_bw() + 
           theme(legend.position="none") +
-          geom_text(data=sentvscallname_per, aes(label=Message_size_per, y=Message_size_per), size=3) + 
+          geom_text(data=sentvscallname_per, aes(label=Message_size_per, y=Message_size_per), size=3, vjust=0) + 
           theme(axis.text.x=element_text(angle=-30, vjust=0.5))
   
   # Plot a single legend
