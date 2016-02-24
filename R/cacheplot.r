@@ -1,48 +1,45 @@
-#' Plots PAPI objects
+#' Plots Cacahe Misses
 #' 
-#' @param x
-#' PAPI object.
-#' @param ...
-#' Additional objects.
 #' @param title
-#' Optional argument for adding a title to the plot.
+#' The label for the plot title. Should be a character string of
+#' your choice, \code{NULL} for no label, or left blank for
+#' the default plot label.  In the latter case, this is chosen
+#' based on the input data.
 #' @param opnames
 #' An optional argument to specify different names for the 
 #' expressions/operations used to generate the profiler data.
 #' @param color
-#' Logical; indicates whether groups should be colored differently
-#' in the case of plotting multiple objects
+#' Logical; should different groups be colored?
 #' @param facet.by
 #' Choice to facet cache plots by the different expressions/operations
 #' (\code{facet.by="operation"}), or by the cache level (\code{facet.by="level"}).
+#' @param bar.label
+#' Logical; should numeric values of heights of bars be shown?
 #' 
 #' @examples
 #' \dontrun{
 #' library(pbdPAPI)
-#' x <- system.cache(rnorm(2e2))
-#' y <- system.cache(rnorm(1e4))
-#' z <- system.cache(rnorm(1e6))
+#' x <- system.cache(rnorm(1e4))
+#' y <- system.cache(rnorm(4e4))
+#' z <- system.cache(rnorm(8e4))
 #' 
 #' library(hpcvis)
-#' plot(x)
-#' plot(x, opnames=NULL)
+#' papiplot(x)
+#' papiplot(x, opnames=NULL)
 #' 
-#' plot(x, y, opnames=c("2e2", "1e4"), title="rnorm()")
-#' 
-#' plot(x, y, z, opnames=c("rnorm(2e2)", "rnorm(1e4)", "rnorm(1e6)"))
-#' 
-#' plot(x, y, z, opnames=c("2e2", "1e4"))
+#' opnames <- c("small", "medium", "large")
+#' papiplot(x, y, z, opnames=opnames)
+#' papiplot(x, y, z, opnames=opnames, color=TRUE, facet.by="level")
 #' }
 #' 
-#' @name papi_cache-plot
-#' @rdname papi_cache-plot
-#' @method plot papi_cache
+#' @rdname papiplot
+#' @method papiplot papi_cache
 #' @export
-plot.papi_cache <- function(x, ..., title, opnames, color=FALSE, facet.by="operation")
+papiplot.papi_cache <- function(x, ..., title, opnames, color=FALSE, facet.by="operation", bar.label=FALSE)
 {
-  
   assert_that(is.flag(color))
   assert_that(is.string(facet.by))
+  assert_that(is.flag(bar.label))
   facet.by <- match.arg(tolower(facet.by), c("operation", "level"))
   
   tmp <- cache_lookup_type_levels(x=x)
@@ -57,6 +54,7 @@ plot.papi_cache <- function(x, ..., title, opnames, color=FALSE, facet.by="opera
   val <- as.numeric(sapply(l, as.numeric))
   df <- data.frame(val=val, level=levels)
   
+  shownames <- ifelse(!missing(opnames) && is.null(opnames), FALSE, TRUE)
   
   if (!missing(opnames) && !is.null(opnames))
   {
@@ -108,14 +106,16 @@ plot.papi_cache <- function(x, ..., title, opnames, color=FALSE, facet.by="opera
   
   g <- g + 
     geom_bar(stat="identity") +
-    geom_text(data=df, aes(label=val, y=val), vjust=0) +
     theme_bw() +
     xlab(xlab) +
     ylab(paste("Cache", type))
   
+  if (bar.label)
+    g <- g + geom_text(data=df, aes(label=val, y=val), vjust=0)
+  
   g <- g + facet_wrap(as.formula(paste("~", facetvar)))
   
-  if (is.null(opnames))
+  if (!shownames)
   {
     if (facet.by == "operation")
       g <- g + theme(strip.background=element_blank(), strip.text.x=element_blank())

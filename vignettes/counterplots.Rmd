@@ -77,13 +77,13 @@ plot(cm_1e4, cm_5e4, cm_1e5, color=TRUE, opnames=NULL)
 
 ```{r, echo=TRUE, eval=TRUE}
 library(ggplot2)
-plot(cm_1e4, cm_5e4, cm_1e5, facet.by="level") + 
+papiplot(cm_1e4, cm_5e4, cm_1e5, facet.by="level") + 
     theme(axis.text.x=element_text(angle=30, hjust=1))
 ```
 
 
 ```{r, echo=TRUE, eval=TRUE}
-plot(cm_1e4, cm_5e4, cm_1e5, color=TRUE, facet.by="level")
+papiplot(cm_1e4, cm_5e4, cm_1e5, color=TRUE, facet.by="level")
 ```
 
 
