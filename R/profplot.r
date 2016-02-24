@@ -43,11 +43,9 @@ profplot <- function(x, title, which=1L:4L, plot.type="timing", stacked=FALSE, b
   if (x@profiler == 'fpmpi')
     ret <- plot_fpmpi(x, which=which, show.title=show.title, label=title)
   else if (x@profiler == 'mpip')
-    ret <- plot_mpip(x, which=which, show.title=show.title,
-              plot.type=plot.type, label=title, bar.label=bar.label)
+    ret <- plot_mpip(x, which=which, show.title=show.title, plot.type=plot.type, label=title, bar.label=bar.label, stacked=stacked)
   else if (x@profiler == 'tau')
-    ret <- plot_tau(x, which=which, show.title=show.title,
-             plot.type=plot.type, label=title, bar.label=bar.label)
+    ret <- plot_tau(x, which=which, show.title=show.title, plot.type=plot.type, label=title, bar.label=bar.label)
   else
     stop("Unknown profiler")
   

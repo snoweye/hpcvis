@@ -1,5 +1,5 @@
 ### Timings by Rank
-plot_mpip_timing <- function(output, bar.label, plot.type)
+plot_mpip_timing <- function(output, bar.label, stacked)
 {
   ### Fool R CMD check
   Rank <- MPI_time <- Tot <- Call1 <- Time <- Call2 <-
@@ -81,6 +81,16 @@ plot_mpip_timing <- function(output, bar.label, plot.type)
           theme(legend.position="none") +
           theme(axis.text.x=element_text(angle=-30, vjust=0.5))
   
+  if (!stacked)
+  {
+    g1 <- g1 + 
+      theme(legend.position = "none") +
+      facet_wrap(facets =~ Timing, scales = "free_x")
+    
+    g2 <- g2 + 
+      theme(legend.position = "none") +
+      facet_wrap(facets =~ Timing, scales = "free_x")
+  }
   
   if (bar.label)
   {
@@ -486,7 +496,7 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
 
 
 ### mpip
-plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timings", label, bar.label=FALSE)
+plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timings", label, bar.label=FALSE, stacked=FALSE)
 {
   plot.types <- c("timings", "stats1", "stats2", "messages1", "messages2")#, "counts")
   plot.type <- match.arg(tolower(plot.type), plot.types)
@@ -501,7 +511,7 @@ plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timings", labe
   
   if (plot.type == "timings")
   {
-    plots <- plot_mpip_timing(output=output, bar.label=bar.label, plot.type=plot.type)
+    plots <- plot_mpip_timing(output=output, bar.label=bar.label, stacked=stacked)
     
     if (missing(label))
       label <- "Function Timings"
