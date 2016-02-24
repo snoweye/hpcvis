@@ -4,7 +4,7 @@
 \alias{profplot}
 \title{Plotting}
 \usage{
-profplot(x, title, which = 1L:4L, plot.type = "timing", stacked = FALSE,
+profplot(x, title, which = 1:4, plot.type = "timing", stacked = FALSE,
   bar.label = FALSE)
 }
 \arguments{
@@ -15,7 +15,7 @@ your choice, \code{NULL} for no label, or left blank for
 the default plot label.  In the latter case, this is chosen
 based on the input data.}
 
-\item{which}{Vector consisting of a subset of the integers 1, 2, 3, 4.
+\item{which}{Vector consisting of a subset of the integers 1 through 4.
 Determines which plots will be produced.}
 
 \item{plot.type}{for profiling mpiP including "timings", "stats", and "messages".}

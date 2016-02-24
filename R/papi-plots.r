@@ -1,29 +1,3 @@
-check_classes <- function(l)
-{
-  classes <- unique(as.vector(sapply(l, class)))
-  if (length(classes) > 2)
-    stop("You must pass in objects of the same type", call.=FALSE)
-  
-  return(TRUE)
-}
-
-
-
-cache_lookup_type_levels <- function(x)
-{
-  if (any(class(x) == "papi_cache"))
-  {
-    type <- sub(names(x)[1], pattern=".*cache ", replacement="")
-    type <- gsub(type, pattern="(^|[[:space:]])([[:alpha:]])", replacement="\\1\\U\\2", perl=TRUE)
-    levels <- gsub(names(x), pattern="(^L| cache misses)", replacement="")
-  }
-  
-  ## ...
-  return(list(type=type, levels=levels))
-}
-
-
-
 #' Plots PAPI objects
 #' 
 #' @param x
@@ -38,12 +12,9 @@ cache_lookup_type_levels <- function(x)
 #' @param color
 #' Logical; indicates whether groups should be colored differently
 #' in the case of plotting multiple objects
-#' @param show.opnames
-#' Logical; indicates whether or not expression/operation names should be
-#' shown.
 #' @param facet.by
 #' Choice to facet cache plots by the different expressions/operations
-#' (\code{facet.by="opnames"}), or by the cache level (\code{facet.by="level"}).
+#' (\code{facet.by="operation"}), or by the cache level (\code{facet.by="level"}).
 #' 
 #' @examples
 #' \dontrun{
@@ -54,7 +25,7 @@ cache_lookup_type_levels <- function(x)
 #' 
 #' library(hpcvis)
 #' plot(x)
-#' plot(x, show.opnames=FALSE)
+#' plot(x, opnames=NULL)
 #' 
 #' plot(x, y, opnames=c("2e2", "1e4"), title="rnorm()")
 #' 
@@ -67,9 +38,12 @@ cache_lookup_type_levels <- function(x)
 #' @rdname papi_cache-plot
 #' @method plot papi_cache
 #' @export
-plot.papi_cache <- function(x, ..., title, opnames, color=FALSE, show.opnames=TRUE, facet.by="opnames")
+plot.papi_cache <- function(x, ..., title, opnames, color=FALSE, facet.by="operation")
 {
-  facet.by <- match.arg(tolower(facet.by), c("opnames", "level"))
+  
+  assert_that(is.flag(color))
+  assert_that(is.string(facet.by))
+  facet.by <- match.arg(tolower(facet.by), c("operation", "level"))
   
   tmp <- cache_lookup_type_levels(x=x)
   type <- tmp$type
@@ -80,27 +54,18 @@ plot.papi_cache <- function(x, ..., title, opnames, color=FALSE, show.opnames=TR
   check_classes(l)
   
   len <- length(l)
-  
   val <- as.numeric(sapply(l, as.numeric))
-  
   df <- data.frame(val=val, level=levels)
   
   
-  if (!missing(opnames))
+  if (!missing(opnames) && !is.null(opnames))
   {
     if (length(opnames) != len)
-    {
-      badlen <- TRUE
-      warning("Length of argument 'opnames' does not match number of inputs; ignoring")
-    }
+      stop("Length of argument 'opnames' does not match number of inputs")
     else
-    {
-      badlen <- FALSE
       opnames <- as.vector(sapply(opnames, function(nm) rep(nm, nlevels)))
-    }
   }
-  
-  if (missing(opnames) || badlen)
+  else
   {
     opnames <- sapply(l, function(y) attributes(y)$call)
     opnames <- as.vector(sapply(opnames, function(nm) rep(nm, nlevels)))
@@ -113,7 +78,7 @@ plot.papi_cache <- function(x, ..., title, opnames, color=FALSE, show.opnames=TR
   
   df <- cbind(df, opnames=opnames)
   
-  if (facet.by == "opnames")
+  if (facet.by == "operation")
   {
     xvar <- "level"
     facetvar <- "opnames"
@@ -150,16 +115,47 @@ plot.papi_cache <- function(x, ..., title, opnames, color=FALSE, show.opnames=TR
   
   g <- g + facet_wrap(as.formula(paste("~", facetvar)))
   
-  if (!show.opnames)
+  if (is.null(opnames))
   {
-    if (facet.by == "opnames")
+    if (facet.by == "operation")
       g <- g + theme(strip.background=element_blank(), strip.text.x=element_blank())
     else if (facet.by == "level")
       g <- g + theme(axis.ticks=element_blank(), axis.text.x=element_blank())
   }
   
   if (!missing(title))
-    g <- g + ggtitle(title)
+  {
+    if (!is.null(title))
+      g <- g + ggtitle(title)
+  }
+  else
+    g <- g + ggtitle("Total Cache Misses")
   
   return(g)
+}
+
+
+
+check_classes <- function(l)
+{
+  classes <- unique(as.vector(sapply(l, class)))
+  if (length(classes) > 2)
+    stop("You must pass in objects of the same type", call.=FALSE)
+  
+  return(TRUE)
+}
+
+
+
+cache_lookup_type_levels <- function(x)
+{
+  if (any(class(x) == "papi_cache"))
+  {
+    type <- sub(names(x)[1], pattern=".*cache ", replacement="")
+    type <- gsub(type, pattern="(^|[[:space:]])([[:alpha:]])", replacement="\\1\\U\\2", perl=TRUE)
+    levels <- gsub(names(x), pattern="(^L| cache misses)", replacement="")
+  }
+  
+  ## ...
+  return(list(type=type, levels=levels))
 }

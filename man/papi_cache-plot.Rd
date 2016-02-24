@@ -6,7 +6,7 @@
 \title{Plots PAPI objects}
 \usage{
 \method{plot}{papi_cache}(x, ..., title, opnames, color = FALSE,
-  show.opnames = TRUE, facet.by = "opnames")
+  facet.by = "opnames")
 }
 \arguments{
 \item{x}{PAPI object.}
@@ -20,9 +20,6 @@ expressions/operations used to generate the profiler data.}
 
 \item{color}{Logical; indicates whether groups should be colored differently
 in the case of plotting multiple objects}
-
-\item{show.opnames}{Logical; indicates whether or not expression/operation names should be
-shown.}
 
 \item{facet.by}{Choice to facet cache plots by the different expressions/operations
 (\code{facet.by="opnames"}), or by the cache level (\code{facet.by="level"}).}
@@ -39,7 +36,7 @@ z <- system.cache(rnorm(1e6))
 
 library(hpcvis)
 plot(x)
-plot(x, show.opnames=FALSE)
+plot(x, opnames=NULL)
 
 plot(x, y, opnames=c("2e2", "1e4"), title="rnorm()")
 
