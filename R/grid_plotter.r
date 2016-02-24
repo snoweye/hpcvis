@@ -2,11 +2,6 @@ grid_plotter <- function(plots, which, label, show.title=TRUE, legend)
 {
   add.legend <- !missing(legend)
   
-  if (length(which) > 4 || length(which) < 1 || any(which < 0) || any(which > 4) || length(unique(which)) != length(which))
-  {
-    stop("argument 'which' must contain a subset of the numbers 1, 2, 3, 4")
-  } 
-  
   title <- grid::textGrob(label, gp=grid::gpar(fontsize=20, font=3))
   
   if (length(which) == 1) 

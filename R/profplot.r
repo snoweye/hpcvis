@@ -32,7 +32,15 @@ profplot <- function(x, title, which=1:4, plot.type="timing", stacked=FALSE, bar
   if (class(x) != "prof")
     stop("argument 'x' must be of class 'prof'")
   
+  if (length(which) > 4 || length(which) < 1 || any(which < 0) || any(which > 4) || length(unique(which)) != length(which))
+    stop("argument 'which' must contain a subset of the numbers 1, 2, 3, 4")
+  
+  assert_that(missing(title) || is.null(title) || is.string(title))
+  assert_that(is.flag(stacked))
+  assert_that(is.flag(bar.label))
+  assert_that(is.string(plot.type))
   plot.type <- match.arg(tolower(plot.type), c("timings", "stats", "messages"))
+  
   
   if (missing(title))
     show.title <- TRUE
