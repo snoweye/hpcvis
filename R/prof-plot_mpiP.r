@@ -486,9 +486,9 @@ plot_mpip_counts <- function(output, bar.label, plot.type)
 
 
 ### mpip
-plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timing", label, bar.label=FALSE)
+plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timings", label, bar.label=FALSE)
 {
-  plot.types <- c("timing", "stats1", "stats2", "messages1", "messages2")#, "counts")
+  plot.types <- c("timings", "stats1", "stats2", "messages1", "messages2")#, "counts")
   plot.type <- match.arg(tolower(plot.type), plot.types)
   
   add.legend <- FALSE
@@ -499,12 +499,12 @@ plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timing", label
   # Timing plots
   # --------------------------------------------------------
   
-  if (plot.type == "timing")
+  if (plot.type == "timings")
   {
     plots <- plot_mpip_timing(output=output, bar.label=bar.label, plot.type=plot.type)
     
     if (missing(label))
-      label <- "Simple Timing Results"
+      label <- "Function Timings"
   }
   
   # --------------------------------------------------------
