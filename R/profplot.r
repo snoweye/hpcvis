@@ -27,7 +27,7 @@ profplot <- function(x, which=1L:4L, plot.type="timing", title, bar.label=FALSE)
   
   if (missing(title))
     show.title <- TRUE
-  else if (is.null(label))
+  else if (is.null(title))
     show.title <- FALSE
   else
     show.title <- TRUE
