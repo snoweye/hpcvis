@@ -15,13 +15,27 @@
 #' PAPI object.
 #' @param ...
 #' Additional objects.
+#' @param title
+#' The label for the plot title. Should be a character string of
+#' your choice, \code{NULL} for no label, or left blank for
+#' the default plot label.  In the latter case, this is chosen
+#' based on the input data.
+#' @param facet.by
+#' Choice to facet cache plots by the different expressions/operations
+#' (\code{facet.by="operation"}), or by the cache level (\code{facet.by="level"}).
+#' @param label.angle
+#' The angle of x-axis labels.
 #' 
 #' @return
 #' A ggplot2 object.
 #' 
 #' @rdname papiplot
 #' @export
-papiplot <- function (x, ...)
+papiplot <- function (x, ..., title, facet.by="operation", label.angle=0)
 {
+  assert_that(is.numeric(label.angle))
+  assert_that(is.string(facet.by))
+  facet.by <- match.arg(tolower(facet.by), c("operation", "level"))
+  
   UseMethod("papiplot", x)
 }

@@ -10,9 +10,6 @@
 #' expressions/operations used to generate the profiler data.
 #' @param color
 #' Logical; should different groups be colored?
-#' @param facet.by
-#' Choice to facet cache plots by the different expressions/operations
-#' (\code{facet.by="operation"}), or by the cache level (\code{facet.by="level"}).
 #' @param bar.label
 #' Logical; should numeric values of heights of bars be shown?
 #' 
@@ -35,7 +32,7 @@
 #' @rdname papiplot
 #' @method papiplot papi_cache
 #' @export
-papiplot.papi_cache <- function(x, ..., title, opnames, color=FALSE, facet.by="operation", bar.label=FALSE)
+papiplot.papi_cache <- function(x, ..., title, opnames, color=FALSE, facet.by="operation", bar.label=FALSE, label.angle=0)
 {
   assert_that(is.flag(color))
   assert_that(is.string(facet.by))
@@ -107,6 +104,7 @@ papiplot.papi_cache <- function(x, ..., title, opnames, color=FALSE, facet.by="o
   g <- g + 
     geom_bar(stat="identity") +
     theme_bw() +
+    theme(axis.text.x=element_text(angle=label.angle, hjust=1)) +
     xlab(xlab) +
     ylab(paste("Cache", type))
   

@@ -15,7 +15,7 @@
 #' @importFrom ggplot2 aes aes_string element_blank element_text facet_wrap geom_abline
 #'  geom_bar geom_line geom_point geom_text ggplot ggplotGrob
 #'  ggplot_build ggplot_gtable ggtitle labs qplot scale_fill_discrete
-#'  theme theme_bw unit xlab ylab autoplot
+#'  theme theme_bw unit xlab ylab autoplot stat_boxplot geom_boxplot
 #'
 #' @name hpcvis-package
 #' @docType package

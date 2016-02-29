@@ -51,16 +51,16 @@ It is quite possible, or perhaps even likely, that the computing environment in 
 ```r
 x <- system.cache(rnorm(1e4))
 x
-## L1 Cache Misses: 7620
-## L2 Cache Misses: 9786
-## L3 Cache Misses: 5972 
+## L1 Cache Misses: 5669
+## L2 Cache Misses: 6910
+## L3 Cache Misses: 3526 
 ```
 
 ```r
-dump("x", stdout())
+papiexport(x)
 ## x <-
-## structure(list(`L1 cache misses` = 7620, `L2 cache misses` = 9786, 
-##     `L3 cache misses` = 5972), .Names = c("L1 cache misses", 
+## structure(list(`L1 cache misses` = 5669, `L2 cache misses` = 6910, 
+##     `L3 cache misses` = 3526), .Names = c("L1 cache misses", 
 ## "L2 cache misses", "L3 cache misses"), class = c("papi_output", 
 ## "papi_cache"), call = "rnorm(10000)")
 ```
@@ -89,33 +89,46 @@ cm_1e4
 
 
 ```{r, echo=TRUE, eval=TRUE}
-plot(cm_1e4)
+papiplot(cm_1e4)
 ```
 
 
 ```{r, echo=TRUE, eval=TRUE}
-plot(cm_1e4, cm_5e4, cm_1e5)
-```
-
-
-
-```{r, echo=TRUE, eval=TRUE}
-plot(cm_1e4, cm_5e4, cm_1e5, color=TRUE, opnames=NULL)
+papiplot(cm_1e4, cm_5e4, cm_1e5)
 ```
 
 
 
 ```{r, echo=TRUE, eval=TRUE}
-library(ggplot2)
-papiplot(cm_1e4, cm_5e4, cm_1e5, facet.by="level") + 
-    theme(axis.text.x=element_text(angle=30, hjust=1))
+papiplot(cm_1e4, cm_5e4, cm_1e5, color=TRUE, opnames=NULL)
+```
+
+
+
+```{r, echo=TRUE, eval=TRUE}
+papiplot(cm_1e4, cm_5e4, cm_1e5, facet.by="level", label.angle=20) 
 ```
 
 
 ```{r, echo=TRUE, eval=TRUE}
-papiplot(cm_1e4, cm_5e4, cm_1e5, color=TRUE, facet.by="level")
+papiplot(cm_1e4, cm_5e4, cm_1e5, color=TRUE, facet.by="level", label.angle=20)
 ```
 
+
+
+
+# Benchmark Plotters
+
+```{r, echo=TRUE, eval=TRUE}
+library(hpcvis)
+file <- system.file("testdata/cachebench.Rda", package="hpcvis")
+load(file)
+```
+
+```{r, echo=TRUE, eval=TRUE}
+papiplot(rnorm_cachebench)
+papiplot(rnorm_cachebench, facet.by="operation", label.angle=15)
+```
 
 
 
