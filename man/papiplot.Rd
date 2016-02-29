@@ -37,11 +37,6 @@ expressions/operations used to generate the profiler data.}
 \item{color}{Logical; should different groups be colored?}
 
 \item{bar.label}{Logical; should numeric values of heights of bars be shown?}
-
-\item{title}{The label for the plot title. Should be a character string of
-your choice, \code{NULL} for no label, or left blank for
-the default plot label.  In the latter case, this is chosen
-based on the input data.}
 }
 \value{
 A ggplot2 object.
