@@ -1,3 +1,4 @@
 Release 0.1-0:
+	* Fix papi and prof plots. Rename them for better interactive use.
+	* Add vignettes.
 	* Import plots formerly from pbdPAPI and pbdPROF.
-	* Add vignette.
