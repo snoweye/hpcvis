@@ -23,6 +23,7 @@ library(hpcvis)
 
 options(scipen = 3)
 knitr::opts_chunk$set(
+  cache   = TRUE,
   comment = NA,
   error   = FALSE,
   tidy    = FALSE

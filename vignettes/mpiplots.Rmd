@@ -23,6 +23,7 @@ library(hpcvis)
 
 options(scipen = 3)
 knitr::opts_chunk$set(
+  cache   = TRUE,
   comment = NA,
   error   = FALSE,
   tidy    = FALSE
@@ -121,13 +122,13 @@ profplot(quantile.mpip, plot.type="stats", stacked=TRUE)
 Finally, we can also add bar labels by passing the argument `bar.label=TRUE`.  These labels will show the numerical value of the bar, which is not generally recommended, but some journals like this style.  We again show this for the "stats" plot type:
 
 ```{r}
-profplot(quantile.mpip, plot.type="stats", bar.label=TRUE)
+profplot(quantile.mpip, plot.type="stats", which=1, bar.label=TRUE)
 ```
 
 The various options are designed to interact with each other in a reasonably smooth way.  For example, if we pass `stacked=TRUE` and `bar.label=TRUE` together, then the values are summed:
 
 ```{r}
-profplot(quantile.mpip, plot.type="stats", stacked=TRUE, bar.label=TRUE)
+profplot(quantile.mpip, plot.type="stats", which=2, stacked=TRUE, bar.label=TRUE)
 ```
 
 
