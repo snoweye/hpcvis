@@ -32,21 +32,14 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-hpcvis offers utilities for benchmarking and visualizing profiler data from MPI profilers, as well as performance counter data from PAPI.
+The **hpcvis** package [[@hpcvis]], part of the pbdR project [[@pbdR2012]], offers utilities for visualizing MPI codes, as well as hardware performance counter data.  Visualizations are available from data genered by both the **pbdPROF** package [[@profpackage]] and the **pbdPAPI** package [[@papipackage]].
 
+For MPI codes, currently both **fpmpi** [[@fpmpi]] and **mpiP** [[@mpiP]] are supported.  In fact, these visualizations are applicable to any MPI code linked with either of these profilers (not necessarily just those using R).  But for those using R, the **pbdMPI** package [[@pbdMPI]] is fully supported, via **pbdPROF**, both of which are on CRAN.  For installation details, including combining these MPI profilers with R codes, see the **pbdPROF** vignette [[@profvignette]].
 
-[[@pbdR2012]]
-[[@profpackage]]
-[[@profvignette]]
-[[@papipackage]]
-[[@papivignette]]
-[[@mucci1999papi]]
-[[@fpmpi]]
-[[@mpiP]]
+The other half of the **hpcvis** package deals with hardware counter data.  The details of this go well beyond the scope of this document; for a full introduction, see the **pbdPAPI** vignette [[@papivignette]].  A very condensed version is that modern computer hardware generates statistical data about the programs it runs, which can be gathered with utilities like **PAPI** [[@mucci1999papi]].  This data includes things like cache miss counts and the number of floating point operations executed.  The **pbdPAPI** package makes it possible to profile R codes in this way, and **hpcvis** makes it simple to generate publication-ready visualizations for this data.
 
 
 ## Installation
-
 At this time, we can not release the package on CRAN due to the absence of the **pbdPAPI** package from CRAN.  
 
 The development version is maintained on GitHub, and can easily be installed by any of the packages that offer installations from GitHub:
@@ -56,6 +49,38 @@ devtools::install_github("RBigData/hpcvis")
 ghit::install_github("RBigData/hpcvis")
 remotes::install_github("RBigData/hpcvis")
 ```
+
+For installation details of **pbdPROF** or **pbdPAPI**, please see the relevant package documentation [[@profvignette,@papivignette]].
+
+
+
+
+
+# Motivation and Conventions
+
+## Separation from Profiler Packages
+One may at first wonder why these utilities are not simply integrated into their respective packages, **pbdPROF** and **pbdPAPI**.  In fact, this was the original design.  However, the "analysis and vis" stack of the R package extensions we depend on (namely **ggplot2** and friends) includes a lengthy collection of dependencies which are often difficult to install on "managed" systems (servers, clusters, supercomputers, etc.).  Since the primary goal of **pbdPROF** and **pbdPAPI** is to enable profiling in these environments, the packages needs to be as easy as possible to install and maintain there.  
+
+Furthermore, we believe that most analysts still prefer to do their visualization work on their laptop, even if their analysis is done on the cluster.  So there is really no need for the complicated graphics stack to even exist in such environments.  As such, the workflow we propose is:
+
+1. profile analysis on remote machine with **pbdPROF** and/or **pbdPAPI**
+2. export profiler data (method varies depending on what kind of profiling has occurred)
+3. import and visualize locally with **hpcvis**
+
+More information, including examples, is given in each of the package-specific **hpcvis** vignettes.
+
+
+## Plot Function Naming
+By use of R's object oriented programming facilities, it is possible to "overload" the `plot()` command.  This would make it so that given any profiler object, one need only issue `plot()` on that object to produce the desired plot.  However, the `plot()` command in R is *extremely* overloaded.  This makes it impossible to see specific plot arguments, find help, etc. for the custom plotter utilities.  So the compromise is to learn two new commands, `profplot()` for MPI profiler objects, and `papiplot()` for counter objects.
+
+
+
+
+
+# Package Usage
+
+Since package usage is split into two distinct categories, **pbdPROF** and **pbdPAPI**, we do not attempt to show off package usage here.  Instead, the reader should see the relevant vignette, *Visualizing MPI Codes with hpcvis* for the former, and *Visualizing Performance Counter Data with hpcvis* for the latter.
+
 
 
 
