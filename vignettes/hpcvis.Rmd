@@ -50,7 +50,7 @@ ghit::install_github("RBigData/hpcvis")
 remotes::install_github("RBigData/hpcvis")
 ```
 
-For installation details of **pbdPROF** or **pbdPAPI**, please see the relevant package documentation [[@profvignette,@papivignette]].
+For installation details of **pbdPROF** or **pbdPAPI**, please see the relevant package documentation [[@profvignette],[@papivignette]].
 
 
 
