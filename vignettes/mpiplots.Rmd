@@ -32,39 +32,102 @@ knitr::opts_chunk$set(
 
 # Introduction
 
-[[@pbdR2012]]
-[[@profpackage]]
-[[@profvignette]]
-[[@fpmpi]]
-[[@mpiP]]
+In this vignette, we will introduce the facilities for visualizing MPI profiler data, as generated from the **pbdPROF** package [[@profpackage]].  Before proceeding, the reader is encouraged to start with the *Introducing hpcvis* vignette, which is distributed with the **hpcvis** package [[@hpcvis]].
+
+Recall that **pbdPROF** supports both the **fpmpi** [[@fpmpi]] and **mpiP** [[@mpiP]] profilers for MPI.  The remaining sections are split between these two profilers.
 
 
 
 
 # Plotting fpmpi Data
 
-```{r, echo=TRUE, eval=TRUE}
+Since **fpmpi** profiler data is relatively simple, so too are the visualizations we can create from it.
+
+Before proceeding, let us load some sample data.  We will use the **fpmpi** profiler output from a **pbdMPI** [[@pbdMPI]] code written in a "manager/worker" style, which computed quantiles of a random dataset.
+
+```{r}
 library(hpcvis)
 file <- system.file("extdata/quantile.mw.fpmpi", package="pbdPROF")
 quantile.fpmpi <- pbdPROF::read.prof(file)
+```
 
+To visualize, we need only call the `profplot()` function on our data:
+
+```{r}
 profplot(quantile.fpmpi)
+```
+
+Note the 4 different plots.  These should be self-explanatory for someone familiar with MPI, so we will not elaborate here on their meaning or value.  However, it may be that someone does not want or need all 4 plots.  We can easily subset them with an integer vector argument `which` passed to `profplot()`.  For example:
+
+```{r}
 profplot(quantile.fpmpi, which=1:2)
 ```
+
+This gives us the first two plots (in order 1, 2).  We could use the vector `2:1` (the reverse) to display them in reverse order.
+
+For **fpmpi**, only one of the remaining `profplot()` arguments is valid (i.e., not ignored), namely `title`.  By default, the plot "title" is "FPMPI Profiler Output".  We can pass our preferred title as a string, or remove the title entirely by passing `NULL`.  We show the latter as a simple example:
+
+```{r}
+profplot(quantile.fpmpi, which=2, title=NULL)
+```
+
+
 
 
 
 # Plotting mpiP Data
 
-```{r, echo=TRUE, eval=TRUE}
+Compared to **fpmpi**, **mpiP** profiler data is significantly more complex.  Likewise, the visualizations we can create from it become more complex.
+
+Before proceeding, let us load some sample data.  We will use the **fpmpi** profiler output from a **pbdMPI** [[@pbdMPI]] code written in a "manager/worker" style, which computed quantiles of a random dataset.
+
+```{r}
 library(hpcvis)
 file <- system.file("extdata/quantile.mw.mpip", package="pbdPROF")
 quantile.mpip <- pbdPROF::read.prof(file)
+```
 
+
+## Basic Usage
+
+As before, we need only call the `profplot()` function on our data:
+
+```{r}
 profplot(quantile.mpip)
+```
+
+Basic plot options such as the `title` and `which` arguments work identically here as with **fpmpi** profiler data, and so we do not revisit their use here.  For examples, see the above section.
+
+
+## Plot Type
+
+Since **mpiP** offers quite a lot of information about the MPI codes, we separate our plots into different "types".  We currently have plots which give information about MPI timings, some simple statistics, and message sizes.  The different plot sets can be generated via the `plot.type` argument to `profplot()`, and the arguments are "timings", "stats", and "messages", respectively.  
+
+The default plot type (shown in the subsection above) gives the "timings" plots, so we do not recreate it here.  We show the "messages" plots:
+
+```{r}
 profplot(quantile.mpip, plot.type="messages")
-profplot(quantile.mpip, plot.type="messages", stacked=TRUE)
-profplot(quantile.mpip, bar.label=TRUE)
+```
+
+
+## Bars
+
+There is some amount of customization available for the many barplots in any of the subplots in each of the above plot types.  For instance, by passing the argument `stacked=TRUE`, then the barplots will be stacked barplots (like a non-polar coordinate pie chart).  We show this for the "stats" plot type:
+
+```{r}
+profplot(quantile.mpip, plot.type="stats", stacked=TRUE)
+```
+
+Finally, we can also add bar labels by passing the argument `bar.label=TRUE`.  These labels will show the numerical value of the bar, which is not generally recommended, but some journals like this style.  We again show this for the "stats" plot type:
+
+```{r}
+profplot(quantile.mpip, plot.type="stats", bar.label=TRUE)
+```
+
+The various options are designed to interact with each other in a reasonably smooth way.  For example, if we pass `stacked=TRUE` and `bar.label=TRUE` together, then the values are summed:
+
+```{r}
+profplot(quantile.mpip, plot.type="stats", stacked=TRUE, bar.label=TRUE)
 ```
 
 
