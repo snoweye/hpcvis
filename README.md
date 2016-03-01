@@ -6,6 +6,10 @@
 * **Author:** See section below.
 
 
+The **hpcvis** package offers powerful, reproducible visualization utilities with simple syntax for MPI profiler data and hardware performance counter data.  
+
+For MPI profiling, see the [pbdPROF](https://github.com/RBigData/pbdPROF) package, and for performance counter data, see the  [pbdPAPI](https://github.com/RBigData/pbdPAPI) package.
+
 
 
 ## Installation
@@ -22,13 +26,19 @@ remotes::install_github("RBigData/hpcvis")
 
 ## Usage
 
+Since the package is separated into two separate components (MPI and performance counter profiling), it is difficult to show off/motivate the package in a few lines.  So you are strongly encouraged to see any of the three package vignettes.  But generally, using the package is no more difficult that calling:
 
 ```r
-x <- system.cache(runif(1e4))
-y <- system.cache(runif(2e4))
-
-plot(x,y)
+profplot(x)
 ```
+
+or
+
+```r
+papiplot(x)
+```
+
+
 
 
 
