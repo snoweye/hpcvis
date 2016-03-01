@@ -3,8 +3,11 @@
 \docType{package}
 \name{hpcvis-package}
 \alias{hpcvis-package}
-\title{Benchmarking and Plot Utilities for Hardware Counters}
+\title{hpcvis}
 \description{
+Plot utilities for MPI codes and hardware counters.
+}
+\details{
 \tabular{ll}{
    Package: \tab hpcvis\cr
    Type: \tab Package\cr

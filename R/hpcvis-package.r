@@ -1,5 +1,7 @@
-#' Benchmarking and Plot Utilities for Hardware Counters
+#' hpcvis
 #'
+#' Plot utilities for MPI codes and hardware counters.
+#' 
 #' \tabular{ll}{
 #'    Package: \tab hpcvis\cr
 #'    Type: \tab Package\cr

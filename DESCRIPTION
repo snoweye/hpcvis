@@ -1,8 +1,8 @@
 Package: hpcvis
 Version: 0.1-1
-Title: Benchmarking and Plot Utilities for Hardware Counters
+Title: Plot Utilities for MPI Codes and Hardware Counters
 Description: A collection of tools to aid in benchmarking and
-    visualizing performance counter as well as MPI profiler
+    visualizing MPI codes as well as hardware performance counter
     data.  The methods are intended to offer powerful, reproducible
     visualizations with simple syntax.  Profiler data from
     the pbdPROF and pbdPAPI packages is supported.
