@@ -1,7 +1,9 @@
 Release 0.1-1:
   * Added cache benchmark plotter.
+  * Improved vignettes.
+  * Improved readme.
 
 Release 0.1-0:
-	* Fix papi and prof plots. Rename them for better interactive use.
-	* Add vignettes.
-	* Import plots formerly from pbdPAPI and pbdPROF.
+  * Fix papi and prof plots. Rename them for better interactive use.
+  * Add vignettes.
+  * Import plots formerly from pbdPAPI and pbdPROF.
