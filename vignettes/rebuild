@@ -1,9 +1,20 @@
 #!/bin/sh
 
+if [ X$1 = "Xclean" ];then
+ rm -rf *_cache/
+ rm -rf *_files/
+fi
+
 rm -f *.html *.pdf
-Rscript -e "rmarkdown::render('hpcvis.Rmd')"
-Rscript -e "rmarkdown::render('mpiplots.Rmd')"
-Rscript -e "rmarkdown::render('counterplots.Rmd')"
+
+
+buildVignette(){
+  Rscript -e "rmarkdown::render('$1')"
+}
+
+buildVignette hpcvis.Rmd
+buildVignette counterplots.Rmd
+buildVignette mpiplots.Rmd
 
 #mv -f *.html ../inst/doc/
 #cp -f *.Rmd ../inst/doc/
