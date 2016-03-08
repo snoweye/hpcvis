@@ -1,11 +1,14 @@
-Release 0.1-1:
+Release 0.2-0 (///):
+  * 
+
+Release 0.1-1 (3/8/16):
   * Upgrade to latest ggplot2 and gridExtra.
   * Fix profplot() rendering issue inherited from recent gridExtra.
   * Added cache benchmark plotter.
   * Improved vignettes.
   * Improved readme.
 
-Release 0.1-0:
+Release 0.1-0 (2/29/16):
   * Fix papi and prof plots. Rename them for better interactive use.
   * Add vignettes.
   * Import plots formerly from pbdPAPI and pbdPROF.
