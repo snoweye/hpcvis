@@ -25,6 +25,10 @@ Options are "timings", "stats", and "messages".}
 
 \item{bar.label}{Logical; should numeric values of heights of bars be shown?}
 }
+\value{
+An object of class \code{profplot}.  To render the plot, you
+can "print" it, or store it without printing via usual assignment.
+}
 \description{
 Plot methods for \code{prof} class objects.
 }
@@ -32,6 +36,9 @@ Plot methods for \code{prof} class objects.
 \dontrun{
 x <- pbdPROF::read.prof("mydata")
 hpcvis::profplot(x)
+
+myplot <- hpcvis::profplot(x)
+myplot
 }
 
 }

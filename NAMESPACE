@@ -2,6 +2,7 @@
 
 S3method(papiplot,cachebench)
 S3method(papiplot,papi_cache)
+S3method(print,profplot)
 export(papiplot)
 export(profplot)
 import(assertthat)

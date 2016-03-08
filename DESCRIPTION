@@ -14,9 +14,9 @@ Imports:
     grid,
     stats,
     assertthat (>= 0.1),
-    gridExtra (>= 2.0.0),
+    gridExtra (>= 2.2.1),
     reshape2 (>= 1.4.1),
-    ggplot2 (>= 2.0.0)
+    ggplot2 (>= 2.1.0)
 Enhances: 
     pbdPAPI (>= 0.2-2),
     pbdPROF (>= 0.4-0)

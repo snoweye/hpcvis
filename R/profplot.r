@@ -20,10 +20,17 @@
 #' @param bar.label
 #' Logical; should numeric values of heights of bars be shown?
 #' 
+#' @return
+#' An object of class \code{profplot}.  To render the plot, you
+#' can "print" it, or store it without printing via usual assignment.
+#' 
 #' @examples
 #' \dontrun{
 #' x <- pbdPROF::read.prof("mydata")
 #' hpcvis::profplot(x)
+#' 
+#' myplot <- hpcvis::profplot(x)
+#' myplot
 #' }
 #' 
 #' @export
@@ -58,8 +65,16 @@ profplot <- function(x, title, which=1:4, plot.type="timing", stacked=FALSE, bar
   else
     stop("Unknown profiler")
   
-  grid::grid.newpage()
-  grid::grid.draw(ret)
+  class(ret) <- c("profplot", class(ret))
   
-  invisible(ret)
+  ret
+}
+
+
+
+#' @export
+print.profplot <- function(x, ...)
+{
+  grid::grid.newpage()
+  grid::grid.draw(x)
 }
