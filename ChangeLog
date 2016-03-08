@@ -1,4 +1,6 @@
 Release 0.1-1:
+  * Upgrade to latest ggplot2 and gridExtra.
+  * Fix profplot() rendering issue inherited from recent gridExtra.
   * Added cache benchmark plotter.
   * Improved vignettes.
   * Improved readme.
