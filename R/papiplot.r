@@ -33,6 +33,9 @@
 #' @export
 papiplot <- function (x, ..., title, facet.by="operation", label.angle=0)
 {
+  if (!missing(title))
+    assert_that(is.null(title) || is.string(title))
+  
   assert_that(is.numeric(label.angle))
   assert_that(is.string(facet.by))
   facet.by <- match.arg(tolower(facet.by), c("operation", "level"))
