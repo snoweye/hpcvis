@@ -1,1 +1,1 @@
-utils::globalVariables(c("Test", "value"))
+utils::globalVariables(c("Test", "value", "Operation"))

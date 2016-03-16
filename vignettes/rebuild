@@ -1,8 +1,8 @@
 #!/bin/sh
 
 if [ X$1 = "Xclean" ];then
- rm -rf *_cache/
- rm -rf *_files/
+  rm -rf *_cache/
+  rm -rf *_files/
 fi
 
 rm -f *.html *.pdf

@@ -16,7 +16,7 @@
 #' @rdname papiplot
 #' @method papiplot cachebench
 #' @export
-papiplot.cachebench <- function(x, ..., title, levels=1:3, facet.by="operation", label.angle=0)
+papiplot.cachebench <- function(x, ..., title, facet.by="operation", label.angle=0, levels=1:3)
 {
   tmp <- x
   tmp$summarystats <- NULL
