@@ -18,7 +18,7 @@ Imports:
     reshape2 (>= 1.4.1),
     ggplot2 (>= 2.1.0)
 Enhances: 
-    pbdPAPI (>= 0.2-2),
+    pbdPAPI (>= 0.3-2),
     pbdPROF (>= 0.4-0)
 Suggests:
     knitr,
