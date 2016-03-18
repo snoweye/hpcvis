@@ -7,7 +7,7 @@
 \alias{papiplot.papi_cache}
 \title{Cache Miss Benchmark Plotter}
 \usage{
-\method{papiplot}{cachebench}(x, ..., title, facet.by = "operation",
+\method{papiplot}{cachebench}(x, ..., title, opnames, facet.by = "operation",
   label.angle = 0, levels = 1:3)
 
 \method{papiplot}{papi_cache}(x, ..., title, opnames, color = FALSE,
@@ -27,15 +27,15 @@ your choice, \code{NULL} for no label, or left blank for
 the default plot label.  In the latter case, this is chosen
 based on the input data.}
 
+\item{opnames}{An optional argument to specify different names for the 
+expressions/operations used to generate the profiler data.}
+
 \item{facet.by}{Choice to facet cache plots by the different expressions/operations
 (\code{facet.by="operation"}), or by the cache level (\code{facet.by="level"}).}
 
 \item{label.angle}{The angle of x-axis labels.}
 
 \item{levels}{Which cache levels to display.}
-
-\item{opnames}{An optional argument to specify different names for the 
-expressions/operations used to generate the profiler data.}
 
 \item{color}{Logical; should different groups be colored?}
 
