@@ -1,5 +1,7 @@
 Release 0.2-0 (///):
-  * 
+  * Add opnames argument to cachebench plotter.
+  * Add flops benchmark plotter.
+  * Suggest latest pbdPAPI.
 
 Release 0.1-1 (3/8/2016):
   * Upgrade to latest ggplot2 and gridExtra.
