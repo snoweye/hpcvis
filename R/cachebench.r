@@ -16,8 +16,23 @@
 #' @rdname papiplot
 #' @method papiplot cachebench
 #' @export
-papiplot.cachebench <- function(x, ..., title, facet.by="operation", label.angle=0, levels=1:3)
+papiplot.cachebench <- function(x, ..., title, opnames, facet.by="operation", label.angle=0, levels=1:3)
 {
+  l <- list(...)
+  if (length(l) != 0)
+    stop("'...' arguments not supported in papiplot() for cachebench objects.")
+  
+  if (!missing(opnames) && !is.null(opnames))
+    {
+      nm <- names(x)
+      opnames_len <- length(nm) - 2L
+      
+      if (length(opnames) != opnames_len)
+        stop("length of argument 'opnames' doesn't match the number of operations in 'x'")
+      
+      names(x)[1:opnames_len] <- opnames
+    }
+  
   tmp <- x
   tmp$summarystats <- NULL
   tmp$type <- NULL
@@ -54,7 +69,7 @@ papiplot.cachebench <- function(x, ..., title, facet.by="operation", label.angle
       geom_boxplot() + 
       theme(axis.text.x=element_text(angle=label.angle, hjust=1)) +
       xlab(xlab) + 
-      ylab("") + 
+      ylab("Cache Misses") + 
       facet_wrap(as.formula(paste("~", facetvar)))
       # facet_wrap(~ variable)
   
