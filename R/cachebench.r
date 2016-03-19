@@ -65,6 +65,7 @@ papiplot.cachebench <- function(x, ..., title, opnames, facet.by="operation", la
   
   g <- 
     ggplot(df, aes_string(x=xvar, y=yvar)) + 
+      theme_bw() + 
       stat_boxplot(geom ='errorbar')+
       geom_boxplot() + 
       theme(axis.text.x=element_text(angle=label.angle, hjust=1)) +
