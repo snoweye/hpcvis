@@ -39,7 +39,14 @@ papiplot.cachebench <- function(x, ..., title, opnames, facet.by="operation", la
   
   nm <- names(tmp)
   df <- do.call(rbind, lapply(1:length(tmp), function(i) data.frame(tmp[[i]], nm[i])))
-  df <- df[, c(levels, 4)]
+  
+  names.df <- names(df)
+  levels.measured <- unique(substr(names.df[grepl(names.df, pattern="^L")], 2, 2))
+  levels.measured <- sapply(levels.measured, function(i) grep(names.df, pattern=paste0("L", i)))
+  levels <- intersect(levels, levels.measured)
+  if (length(levels) == 0)
+    stop("no selected levels in argument 'levels' match recorded levels in data 'x'")
+  df <- df[, c(levels, ncol(df))]
   
   colnames(df)[ncol(df)] <- "Test"
   colnames(df) <- gsub(colnames(df), pattern=".cache.misses", replacement="", fixed=TRUE)
