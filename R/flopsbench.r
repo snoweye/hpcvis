@@ -18,9 +18,17 @@
 #' @rdname papiplot
 #' @method papiplot flopsbench
 #' @export
-papiplot.flopsbench <- function(x, ..., title, groupby="color")
+papiplot.flopsbench <- function(x, ..., title, opnames, groupby="color")
 {
   groupby <- match.arg(tolower(groupby), c("color", "shape"))
+  
+  if (!missing(opnames))
+  {
+    if (length(opnames) != length(x))
+      stop("argument 'opnames' is of incorrect length")
+    
+    names(x) <- opnames
+  }
   
   df <- lapply(x, as.data.frame)
   nm <- names(df)
