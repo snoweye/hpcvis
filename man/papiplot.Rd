@@ -13,7 +13,7 @@
 \method{papiplot}{papi_cache}(x, ..., title, opnames, color = FALSE,
   facet.by = "operation", bar.label = FALSE, label.angle = 0)
 
-\method{papiplot}{flopsbench}(x, ..., title, groupby = "color")
+\method{papiplot}{flopsbench}(x, ..., title, opnames, groupby = "color")
 
 papiplot(x, ..., title, facet.by = "operation", label.angle = 0)
 }

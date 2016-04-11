@@ -5,7 +5,7 @@
 \title{Plotting}
 \usage{
 profplot(x, title, which = 1:4, plot.type = "timing", stacked = FALSE,
-  bar.label = FALSE)
+  bar.label = FALSE, color = TRUE)
 }
 \arguments{
 \item{x}{\code{prof} class object}
@@ -24,6 +24,8 @@ Options are "timings", "stats", and "messages".}
 \item{stacked}{Logical; should bars be stacked or separated?}
 
 \item{bar.label}{Logical; should numeric values of heights of bars be shown?}
+
+\item{color}{Logical; should different groups be colored?}
 }
 \value{
 An object of class \code{profplot}.  To render the plot, you
