@@ -19,6 +19,8 @@
 #' Logical; should bars be stacked or separated?
 #' @param bar.label
 #' Logical; should numeric values of heights of bars be shown?
+#' @param color
+#' Logical; should different groups be colored?
 #' 
 #' @return
 #' An object of class \code{profplot}.  To render the plot, you
@@ -34,7 +36,7 @@
 #' }
 #' 
 #' @export
-profplot <- function(x, title, which=1:4, plot.type="timing", stacked=FALSE, bar.label=FALSE)
+profplot <- function(x, title, which=1:4, plot.type="timing", stacked=FALSE, bar.label=FALSE, color=TRUE)
 {
   if (class(x) != "prof")
     stop("argument 'x' must be of class 'prof'")
@@ -46,6 +48,7 @@ profplot <- function(x, title, which=1:4, plot.type="timing", stacked=FALSE, bar
   assert_that(is.flag(stacked))
   assert_that(is.flag(bar.label))
   assert_that(is.string(plot.type))
+  assert_that(is.flag(color))
   plot.type <- match.arg(tolower(plot.type), c("timings", "stats", "messages"))
   
   
@@ -59,7 +62,7 @@ profplot <- function(x, title, which=1:4, plot.type="timing", stacked=FALSE, bar
   if (x@profiler == 'fpmpi')
     ret <- plot_fpmpi(x, which=which, show.title=show.title, label=title)
   else if (x@profiler == 'mpip')
-    ret <- plot_mpip(x, which=which, show.title=show.title, plot.type=plot.type, label=title, bar.label=bar.label, stacked=stacked)
+    ret <- plot_mpip(x, which=which, show.title=show.title, plot.type=plot.type, label=title, bar.label=bar.label, stacked=stacked, color=color)
   else if (x@profiler == 'tau')
     ret <- plot_tau(x, which=which, show.title=show.title, plot.type=plot.type, label=title, bar.label=bar.label)
   else

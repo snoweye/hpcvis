@@ -1,5 +1,5 @@
 ### Timings by Rank
-plot_mpip_timing <- function(output, bar.label, stacked)
+plot_mpip_timing <- function(output, bar.label, stacked, color)
 {
   ### Fool R CMD check
   Rank <- MPI_time <- Tot <- Call1 <- Time <- Call2 <-
@@ -81,6 +81,14 @@ plot_mpip_timing <- function(output, bar.label, stacked)
           theme(legend.position="none") +
           theme(axis.text.x=element_text(angle=-30, vjust=0.5))
   
+  if (!color)
+  {
+    g1 <- g1 + ggplot2::scale_fill_grey()
+    g2 <- g2 + ggplot2::scale_fill_grey()
+    g3 <- g3 + ggplot2::scale_fill_grey()
+    g4 <- g4 + ggplot2::scale_fill_grey()
+  }
+  
   if (!stacked)
   {
     g1 <- g1 + 
@@ -106,7 +114,7 @@ plot_mpip_timing <- function(output, bar.label, stacked)
 
 
 ### Timing statistics
-plot_mpip_stats <- function(output, bar.label, stacked)
+plot_mpip_stats <- function(output, bar.label, stacked, color)
 {
   ### Fool R CMD check
   Rank <- MPI_time <- Tot <- Call1 <- Time <- Call2 <-
@@ -187,6 +195,14 @@ plot_mpip_stats <- function(output, bar.label, stacked)
       g4 <- g4 + geom_text(data=timingmax, aes(label=Max_time, y=Max_time), size=3, vjust=0)
     }
     
+    if (!color)
+    {
+      g1 <- g1 + ggplot2::scale_fill_grey()
+      g2 <- g2 + ggplot2::scale_fill_grey()
+      g3 <- g3 + ggplot2::scale_fill_grey()
+      g4 <- g4 + ggplot2::scale_fill_grey()
+    }
+    
     return( list(g1=g1, g2=g2, g3=g3, g4=g4) )
   }
   else
@@ -246,6 +262,13 @@ plot_mpip_stats <- function(output, bar.label, stacked)
       g4 <- g4 + geom_text(data=timingmax_label, aes(label=Max_time, y=Max_time), size=3, vjust=0)
     }
     
+    if (!color)
+    {
+      g1 <- g1 + ggplot2::scale_fill_grey()
+      g2 <- g2 + ggplot2::scale_fill_grey()
+      g3 <- g3 + ggplot2::scale_fill_grey()
+      g4 <- g4 + ggplot2::scale_fill_grey()
+    }
     
     # Plot a single legend
     g1 <- g1 + labs(fill = "MPI Call")
@@ -262,7 +285,7 @@ plot_mpip_stats <- function(output, bar.label, stacked)
 
 
 ### Message statistics
-plot_mpip_messages <- function(output, bar.label, stacked)
+plot_mpip_messages <- function(output, bar.label, stacked, color)
 {
   ### Fool R CMD check
   Rank <- MPI_time <- Tot <- Call1 <- Time <- Call2 <-
@@ -322,6 +345,14 @@ plot_mpip_messages <- function(output, bar.label, stacked)
             theme(legend.position = "none") +
             facet_wrap(facets =~ Call_Name, scales = "free_x")
     
+    if (!color)
+    {
+      g1 <- g1 + ggplot2::scale_fill_grey()
+      g2 <- g2 + ggplot2::scale_fill_grey()
+      g3 <- g3 + ggplot2::scale_fill_grey()
+      g4 <- g4 + ggplot2::scale_fill_grey()
+    }
+    
     if (bar.label)
     {
       messagemin <- aggregate(messagemin$Min, by=list(messagemin$Rank, messagemin$Call_Name), FUN=function(x) sum(as.numeric(x)))
@@ -374,6 +405,14 @@ plot_mpip_messages <- function(output, bar.label, stacked)
             theme_bw() + 
             theme(legend.position = "none")
     
+    if (!color)
+    {
+      g1 <- g1 + ggplot2::scale_fill_grey()
+      g2 <- g2 + ggplot2::scale_fill_grey()
+      g3 <- g3 + ggplot2::scale_fill_grey()
+      g4 <- g4 + ggplot2::scale_fill_grey()
+    }
+    
     if (bar.label)
     {
       commsize <- length(unique(messagemin$Rank))
@@ -414,7 +453,7 @@ plot_mpip_messages <- function(output, bar.label, stacked)
 
 
 ### Counts FIXME
-plot_mpip_counts <- function(output, bar.label, stacked)
+plot_mpip_counts <- function(output, bar.label, stacked, color)
 {
   ### Fool R CMD check
   Rank <- MPI_time <- Tot <- Call1 <- Time <- Call2 <- Call3 <-
@@ -477,6 +516,14 @@ plot_mpip_counts <- function(output, bar.label, stacked)
           geom_text(data=sentvscallname_per, aes(label=Message_size_per, y=Message_size_per), size=3, vjust=0) + 
           theme(axis.text.x=element_text(angle=-30, vjust=0.5))
   
+  if (!color)
+  {
+    g1 <- g1 + ggplot2::scale_fill_grey()
+    g2 <- g2 + ggplot2::scale_fill_grey()
+    g3 <- g3 + ggplot2::scale_fill_grey()
+    g4 <- g4 + ggplot2::scale_fill_grey()
+  }
+  
   # Plot a single legend
   tmp <- ggplot_gtable(ggplot_build(g1))
   leg <- which(sapply(tmp$grobs, function(x) x$name) == "guide-box")
@@ -494,7 +541,7 @@ plot_mpip_counts <- function(output, bar.label, stacked)
 
 
 ### mpip
-plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timings", label, bar.label=FALSE, stacked=FALSE)
+plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timings", label, bar.label=FALSE, stacked=FALSE, color=TRUE)
 {
   add.legend <- FALSE
   
@@ -506,7 +553,7 @@ plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timings", labe
   
   if (plot.type == "timings")
   {
-    plots <- plot_mpip_timing(output=output, bar.label=bar.label, stacked=stacked)
+    plots <- plot_mpip_timing(output=output, bar.label=bar.label, stacked=stacked, color=color)
     
     if (missing(label))
       label <- "Function Timings"
@@ -518,7 +565,7 @@ plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timings", labe
   
   else if (plot.type == "stats")
   {
-    plots <- plot_mpip_stats(output=output, bar.label=bar.label, stacked=stacked)
+    plots <- plot_mpip_stats(output=output, bar.label=bar.label, stacked=stacked, color=color)
     
     if (missing(label) && !stacked)
       label <- "Timing Statistics by Function"
@@ -540,7 +587,7 @@ plot_mpip <- function(x, which=1L:4L, show.title=TRUE, plot.type="timings", labe
   
   else if (plot.type == "messages")
   {
-    plots <- plot_mpip_messages(output=output, bar.label=bar.label, stacked=stacked)
+    plots <- plot_mpip_messages(output=output, bar.label=bar.label, stacked=stacked, color=color)
     
     if (missing(label) && !stacked)
       label <- "Message Statistics by Rank"
